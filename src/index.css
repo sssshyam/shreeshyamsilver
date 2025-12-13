@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-silver-300;
+  }
+
+  body {
+    @apply font-sans text-silver-900 bg-amber-50 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-medium leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-medium leading-snug;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+}
+
+@layer components {
+
+  /* Rajasthan-Inspired Patterns */
+  .pattern-bg {
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(218, 165, 32, 0.03) 10px, rgba(218, 165, 32, 0.03) 20px);
+  }
+
+  .traditional-border {
+    border-image: repeating-linear-gradient(45deg,
+        #DAA520,
+        #DAA520 10px,
+        #C19A6B 10px,
+        #C19A6B 20px) 1;
+  }
+
+  /* Button Styles */
+  .btn {
+    @apply px-8 py-3 font-medium transition-all duration-300 rounded-sm inline-block text-center shadow-md hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-amber-700 border-2 border-amber-600 hover:bg-amber-600 hover:text-white;
+  }
+
+  .btn-lg {
+    @apply px-10 py-4 text-lg;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-8xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Card Styles - Rajasthan Inspired */
+  .card {
+    @apply bg-white border-2 border-amber-200 transition-all duration-300 shadow-sm;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-2xl hover:border-amber-400 hover:-translate-y-1;
+  }
+
+  /* Product Card */
+  .product-card {
+    @apply card-hover overflow-hidden relative;
+  }
+
+  .product-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500;
+  }
+
+  .product-image {
+    @apply w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-3 border-2 border-amber-300 rounded-sm focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all bg-white;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full shadow-sm;
+  }
+
+  .badge-hallmark {
+    @apply badge bg-gradient-to-r from-amber-500 to-orange-500 text-white;
+  }
+
+  .badge-featured {
+    @apply badge bg-gradient-to-r from-red-500 to-pink-500 text-white;
+  }
+
+  /* Link Styles */
+  .link {
+    @apply text-amber-700 hover:text-amber-900 transition-colors duration-200 font-medium;
+  }
+
+  /* Image Overlay */
+  .image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300;
+  }
+
+  /* Decorative Elements */
+  .decorative-line {
+    @apply h-1 w-20 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto;
+  }
+
+  .section-title {
+    @apply text-center mb-12;
+  }
+
+  .section-title h2 {
+    @apply text-amber-900 mb-4;
+  }
+
+  .section-title .decorative-line {
+    @apply mb-4;
+  }
+
+  /* Traditional Rajasthani Colors */
+  .rajasthan-gradient {
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #FDC830 50%, #F37335 75%, #FF6B35 100%);
+  }
+
+  .silver-gradient {
+    background: linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 50%, #C0C0C0 100%);
+  }
+
+  /* Header Enhancement */
+  .header-enhanced {
+    @apply bg-gradient-to-r from-amber-50 via-white to-amber-50 border-b-4 border-amber-400;
+  }
+
+  /* Footer Enhancement */
+  .footer-enhanced {
+    @apply bg-gradient-to-br from-amber-900 via-orange-900 to-amber-900;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Traditional Pattern Utilities */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(218, 165, 32, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .pattern-lines {
+    background-image: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        rgba(218, 165, 32, 0.05) 2px,
+        rgba(218, 165, 32, 0.05) 4px);
+  }
+}
