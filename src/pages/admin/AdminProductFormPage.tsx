@@ -151,7 +151,7 @@ export default function AdminProductFormPage() {
                 const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
                 const filePath = `products/${fileName}`;
 
-                const { error: uploadError, data } = await supabase.storage
+                const { error: uploadError } = await supabase.storage
                     .from('product-images')
                     .upload(filePath, file);
 

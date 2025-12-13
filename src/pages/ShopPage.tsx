@@ -55,7 +55,7 @@ export default function ShopPage() {
             case 'newest':
                 return b.id - a.id;
             default:
-                return b.featured ? 1 : -1;
+                return b.is_featured ? 1 : -1;
         }
     });
 

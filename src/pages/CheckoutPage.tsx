@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function CheckoutPage() {
-    const [step, setStep] = useState(1);
+    const [step] = useState(1); // setStep will be used in future for multi-step checkout
 
     return (
         <div className="min-h-screen bg-silver-50">
