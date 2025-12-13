@@ -8,28 +8,26 @@ export default {
         extend: {
             colors: {
                 silver: {
-                    50: '#FAFAF9',
-                    100: '#F5F5F4',
-                    200: '#E7E5E4',
-                    300: '#D6D3D1',
-                    400: '#A8A29E',
-                    500: '#78716C',
-                    600: '#57534E',
-                    700: '#44403C',
-                    800: '#292524',
-                    900: '#1C1917',
+                    50: '#F8F9FA',
+                    100: '#F1F3F5',
+                    200: '#E9ECEF',
+                    300: '#DEE2E6',
+                    400: '#CED4DA',
+                    500: '#ADB5BD',
+                    600: '#6C757D',
+                    700: '#495057',
+                    800: '#343A40',
+                    900: '#212529',
                 },
                 accent: {
-                    DEFAULT: '#D97706', // Amber-600 - Traditional Rajasthani gold
-                    light: '#F59E0B',   // Amber-500
-                    dark: '#B45309',    // Amber-700
+                    DEFAULT: '#6C757D', // Elegant gray
+                    light: '#ADB5BD',   // Light silver
+                    dark: '#495057',    // Dark gray
                 },
-                rajasthan: {
-                    gold: '#DAA520',
-                    orange: '#FF6B35',
-                    amber: '#FDC830',
-                    terracotta: '#E07A5F',
-                    desert: '#FFFBEB',
+                royal: {
+                    gold: '#C9A961',    // Subtle gold accent
+                    silver: '#C0C0C0', // Pure silver
+                    platinum: '#E5E4E2', // Platinum white
                 }
             },
             fontFamily: {

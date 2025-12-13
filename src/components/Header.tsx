@@ -40,7 +40,7 @@ export default function Header() {
                             <img
                                 src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
                                 alt="Shree Shyam Silver"
-                                className="h-8 md:h-10 w-auto"
+                                className="h-12 md:h-16 w-auto"
                             />
                         </Link>
 
