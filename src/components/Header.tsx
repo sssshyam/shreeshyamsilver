@@ -38,7 +38,7 @@ export default function Header() {
                         {/* Logo */}
                         <Link to="/" className="flex items-center">
                             <img
-                                src="https://i.postimg.cc/SRPDvLQp/Shree-Shyam-Silver.png"
+                                src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
                                 alt="Shree Shyam Silver"
                                 className="h-8 md:h-10 w-auto"
                             />

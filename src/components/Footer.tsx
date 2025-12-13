@@ -29,7 +29,7 @@ export default function Footer() {
                     {/* Brand Info */}
                     <div>
                         <img
-                            src="https://i.postimg.cc/SRPDvLQp/Shree-Shyam-Silver.png"
+                            src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
                             alt="Shree Shyam Silver"
                             className="h-12 mb-4 w-auto"
                         />
