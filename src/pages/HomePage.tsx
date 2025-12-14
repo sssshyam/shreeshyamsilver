@@ -232,7 +232,7 @@ export default function HomePage() {
                                 </svg>
                             </div>
                             <h4 className="mb-2">Ethical Sourcing</h4>
-                            <p className="text-silver-600">Responsibly sourced pure silver materials</p>
+                            <p className="text-silver-600">Responsibly sourced Silver Plated materials</p>
                         </div>
                     </div>
                 </div>

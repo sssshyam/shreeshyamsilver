@@ -135,7 +135,7 @@ export default function ShopPage() {
                 <div className="space-y-2">
                     <label className="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" className="w-4 h-4 text-accent" defaultChecked />
-                        <span className="text-silver-700">99.9% Pure Silver</span>
+                        <span className="text-silver-700">99.9% Silver Plated</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" className="w-4 h-4 text-accent" defaultChecked />

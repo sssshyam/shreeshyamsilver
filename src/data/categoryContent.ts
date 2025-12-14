@@ -82,7 +82,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">Durability and Quality</h3>
                 <p>
-                    Unlike standard frames that may tarnish or fade quickly, our silver-plated and pure silver frames are treated with a special anti-tarnish coating. This ensures that they retain their sparkling finish for years with minimal maintenance. The backings are made from high-quality velvet or polished wood, providing sturdy support and a premium feel from every angle.
+                    Unlike standard frames that may tarnish or fade quickly, our silver-plated and Silver Plated frames are treated with a special anti-tarnish coating. This ensures that they retain their sparkling finish for years with minimal maintenance. The backings are made from high-quality velvet or polished wood, providing sturdy support and a premium feel from every angle.
                 </p>
                  <p>
                     Explore our collection today and give your memories the royal treatment they deserve along with the trust of Shree Shyam Silver.
@@ -100,7 +100,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">Exquisite Designs & Varieties</h3>
                 <p>
-                   Our range includes varying shapes and sizes, from classic rectangular wooden boxes with silver plating to unique duck-shaped and swan-shaped serving sets. We utilize high-quality German Silver and pure silver plating to ensure a brilliant, long-lasting shine. Many of our boxes feature internal compartments lined with food-safe velvet or glass, making them perfect for storing almonds, cashews, raisins, and chocolates.
+                   Our range includes varying shapes and sizes, from classic rectangular wooden boxes with silver plating to unique duck-shaped and swan-shaped serving sets. We utilize high-quality German Silver and Silver Plated plating to ensure a brilliant, long-lasting shine. Many of our boxes feature internal compartments lined with food-safe velvet or glass, making them perfect for storing almonds, cashews, raisins, and chocolates.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">The Ultimate Wedding & Festival Gift</h3>
@@ -189,7 +189,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">What is Resin Silver Decor?</h3>
                 <p>
-                   Resin is a versatile material that can be molded into intricate forms—be it the feathers of a peacock, the petals of a rose, or the features of a deity. We then coat these resin structures with a layer of pure silver, giving you the best of both worlds: the stunning look of heavy silver artifacts at a fraction of the weight and cost.
+                   Resin is a versatile material that can be molded into intricate forms—be it the feathers of a peacock, the petals of a rose, or the features of a deity. We then coat these resin structures with a layer of Silver Plated, giving you the best of both worlds: the stunning look of heavy silver artifacts at a fraction of the weight and cost.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Our Exclusive Collection</h3>

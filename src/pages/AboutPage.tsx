@@ -152,7 +152,7 @@ export default function AboutPage() {
                                 1
                             </div>
                             <div>
-                                <h4 className="mb-2">Sourcing Pure Silver</h4>
+                                <h4 className="mb-2">Sourcing Silver Plated</h4>
                                 <p className="text-silver-600">
                                     We source only the finest quality silver from certified suppliers, ensuring
                                     premium quality for all our creations.

@@ -26,7 +26,7 @@ export default {
                 },
                 royal: {
                     gold: '#C9A961',    // Subtle gold accent
-                    silver: '#C0C0C0', // Pure silver
+                    silver: '#C0C0C0', // Silver Plated
                     platinum: '#E5E4E2', // Platinum white
                 }
             },

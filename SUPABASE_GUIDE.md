@@ -88,20 +88,20 @@ CREATE TABLE testimonials (
 {
   "slug": "silver-pooja-thali-set",
   "name": "Premium Silver Pooja Thali Set",
-  "description": "Handcrafted pure silver pooja thali with intricate traditional designs.",
+  "description": "Handcrafted Silver Plated pooja thali with intricate traditional designs.",
   "price": 45000,
   "images": [
     "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&h=1200&fit=crop"
   ],
   "category_id": 1,
-  "purity": "99.9% Pure Silver",
+  "purity": "99.9% Silver Plated",
   "weight": "250 grams",
   "hallmark": true,
   "in_stock": true,
   "featured": true,
   "use_case": "Pooja",
   "specifications": [
-    {"label": "Material", "value": "99.9% Pure Silver"},
+    {"label": "Material", "value": "99.9% Silver Plated"},
     {"label": "Weight", "value": "250 grams"},
     {"label": "Diameter", "value": "10 inches"}
   ],
@@ -117,7 +117,7 @@ CREATE TABLE testimonials (
 {
   "slug": "benefits-of-silver-utensils",
   "title": "The Health Benefits of Using Silver Utensils",
-  "excerpt": "Discover the ancient wisdom behind using pure silver utensils...",
+  "excerpt": "Discover the ancient wisdom behind using Silver Plated utensils...",
   "content": "Silver has been used for centuries in Indian households...",
   "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&h=600&fit=crop",
   "author": "Dr. Meera Iyer",

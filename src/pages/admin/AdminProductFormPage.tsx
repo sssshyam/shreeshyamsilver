@@ -616,7 +616,7 @@ export default function AdminProductFormPage() {
                                         value={spec.value}
                                         onChange={(e) => updateSpecification(index, 'value', e.target.value)}
                                         onKeyDown={(e) => handleKeyDown(e, addSpecification)}
-                                        placeholder="Value (e.g., 99.9% Pure Silver)"
+                                        placeholder="Value (e.g., 99.9% Silver Plated)"
                                         className="input flex-1"
                                     />
                                     <button

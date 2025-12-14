@@ -122,7 +122,7 @@ USING ( bucket_id = 'product-images' );
 - ✓ In Stock (checkbox)
 
 **Specifications:** (Click "+ Add Specification")
-- Label: "Material" → Value: "99.9% Pure Silver"
+- Label: "Material" → Value: "99.9% Silver Plated"
 - Label: "Weight" → Value: "240 grams"
 - Label: "Height" → Value: "6 inches"
 - Add as many as needed

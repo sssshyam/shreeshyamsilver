@@ -98,7 +98,7 @@ Plus optional fields: `purity`, `weight`, `hallmark`, `in_stock`, `specification
 - `category_id` (number) - Link to categories table
 
 ### Optional Fields:
-- `purity` (text) - e.g., "99.9% Pure Silver"
+- `purity` (text) - e.g., "99.9% Silver Plated"
 - `weight` (text) - e.g., "250 grams"
 - `hallmark` (boolean) - BIS certification
 - `in_stock` (boolean) - Stock status

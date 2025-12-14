@@ -101,7 +101,7 @@ Go to Supabase → Table Editor
 #### Specifications must be JSONB:
 ```json
 [
-  {"label": "Material", "value": "99.9% Pure Silver"},
+  {"label": "Material", "value": "99.9% Silver Plated"},
   {"label": "Weight", "value": "250 grams"}
 ]
 ```
