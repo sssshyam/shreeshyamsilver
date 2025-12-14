@@ -30,15 +30,15 @@ export default function AboutPage() {
                                 <h2 className="mb-6">Crafting Timeless Silver Masterpieces</h2>
                                 <div className="space-y-6 text-lg text-silver-700 leading-relaxed">
                                     <p>
-                                        ShreeShyamSilver is a premier manufacturer of exquisite silver-plated home décor and pooja essentials, proudly rooted in the heritage-rich city of Nokha and Bikaner, Rajasthan. We are founded on an enduring commitment to trust, purity, and artistic excellence.
+                                        Shree Shyam Silver is a premium manufacturer of silver-plated home décor and pooja items, proudly based in Nokha and Bikaner, Rajasthan. Though established just 3 years ago, our brand is built on the strong foundation of 26 years of experience that our founder, Ram Gopal Chandak, holds in Nokha’s renowned silver-work industry.
                                     </p>
 
                                     <p>
-                                        With deep expertise in traditional silver work and a passion for refined craftsmanship, we have established ShreeShyamSilver as a symbol of luxury and devotion. Our brand seamlessly blends the grandeur of royal heritage with contemporary elegance.
+                                        With deep expertise in traditional silver plating and a passion for quality craftsmanship, he has transformed ShreeShyamSilver into a trusted family-run brand that blends heritage with modern elegance.
                                     </p>
 
                                     <p>
-                                        Every masterpiece is handcrafted by master artisans using age-old techniques, ensuring that each curve and carving tells a story. From divine pooja articles to regal home accents, our creations are designed to be cherished heirlooms—reflecting authentic artistry, uncompromising quality, and eternal beauty.
+                                        Every product is handcrafted by skilled artisans using time-honoured techniques, supported by strict quality checks to ensure long-lasting shine and durability. From pooja essentials to home décor accents, our pieces reflect our core values—authentic craftsmanship, consistent quality, and timeless beauty.
                                     </p>
                                 </div>
                             </div>
