@@ -1,3 +1,4 @@
+
 -- ============================================
 -- USER AUTHENTICATION & E-COMMERCE SYSTEM
 -- Add these tables to your Supabase database
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS cart_items (
   UNIQUE(user_id, product_id)
 );
 
--- Orders Table (already exists, but updating structure)
+-- Orders Table (Drop and Recreate to ensure schema match)
 DROP TABLE IF EXISTS order_items CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 
@@ -58,6 +59,10 @@ CREATE TABLE orders (
   -- Additional Info
   notes TEXT,
   admin_notes TEXT,
+  
+  -- Razorpay Setup
+  razorpay_order_id TEXT UNIQUE,
+  razorpay_payment_id TEXT,
   
   -- Timestamps
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -100,65 +105,65 @@ ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies for Users
--- Users can read their own data
+DROP POLICY IF EXISTS "Users can view own profile" ON users;
 CREATE POLICY "Users can view own profile"
   ON users FOR SELECT
   USING (true);
 
--- Users can update their own profile
+DROP POLICY IF EXISTS "Users can update own profile" ON users;
 CREATE POLICY "Users can update own profile"
   ON users FOR UPDATE
   USING (true);
 
--- Anyone can insert (for signup)
+DROP POLICY IF EXISTS "Anyone can signup" ON users;
 CREATE POLICY "Anyone can signup"
   ON users FOR INSERT
   WITH CHECK (true);
 
 -- RLS Policies for Cart Items
--- Users can view their own cart
+DROP POLICY IF EXISTS "Users can view own cart" ON cart_items;
 CREATE POLICY "Users can view own cart"
   ON cart_items FOR SELECT
   USING (true);
 
--- Users can insert to their own cart
+DROP POLICY IF EXISTS "Users can add to cart" ON cart_items;
 CREATE POLICY "Users can add to cart"
   ON cart_items FOR INSERT
   WITH CHECK (true);
 
--- Users can update their own cart
+DROP POLICY IF EXISTS "Users can update cart" ON cart_items;
 CREATE POLICY "Users can update cart"
   ON cart_items FOR UPDATE
   USING (true);
 
--- Users can delete from their own cart
+DROP POLICY IF EXISTS "Users can remove from cart" ON cart_items;
 CREATE POLICY "Users can remove from cart"
   ON cart_items FOR DELETE
   USING (true);
 
 -- RLS Policies for Orders
--- Users can view their own orders
+DROP POLICY IF EXISTS "Users can view own orders" ON orders;
 CREATE POLICY "Users can view own orders"
   ON orders FOR SELECT
   USING (true);
 
--- Users can create orders
+DROP POLICY IF EXISTS "Users can create orders" ON orders;
 CREATE POLICY "Users can create orders"
   ON orders FOR INSERT
   WITH CHECK (true);
 
--- Admins can view all orders (handled in admin panel)
+DROP POLICY IF EXISTS "Public can view orders" ON orders;
 CREATE POLICY "Public can view orders"
   ON orders FOR SELECT
   USING (true);
 
 -- RLS Policies for Order Items
--- Anyone can view order items (for order details)
+DROP POLICY IF EXISTS "Anyone can view order items" ON order_items;
 CREATE POLICY "Anyone can view order items"
   ON order_items FOR SELECT
   USING (true);
 
--- Anyone can insert order items (during checkout)
+DROP POLICY IF EXISTS "Anyone can create order items" ON order_items;
 CREATE POLICY "Anyone can create order items"
   ON order_items FOR INSERT
   WITH CHECK (true);

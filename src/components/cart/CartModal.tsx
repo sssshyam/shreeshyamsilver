@@ -90,7 +90,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                             ₹{item.product.price.toLocaleString('en-IN')}
                                         </p>
 
-                                        {/* Quantity Controls */}
+                                        {/* Quantity and Remove */}
                                         <div className="flex items-center gap-2 mt-2">
                                             <button
                                                 onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
@@ -115,13 +115,6 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                                 Remove
                                             </button>
                                         </div>
-                                    </div>
-
-                                    {/* Subtotal */}
-                                    <div className="text-right">
-                                        <p className="font-semibold text-silver-900">
-                                            ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
-                                        </p>
                                     </div>
                                 </div>
                             ))}

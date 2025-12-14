@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminProvider } from './contexts/AdminContext';
 import Header from './components/Header';
@@ -16,6 +17,7 @@ import BlogPostPage from './pages/BlogPostPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import AccountPage from './pages/AccountPage';
+import MyOrdersPage from './pages/MyOrdersPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import NokhaPage from './pages/NokhaPage';
@@ -33,6 +35,7 @@ import AdminCategoriesPage from './pages/admin/AdminCategoriesPage';
 import AdminCategoryFormPage from './pages/admin/AdminCategoryFormPage';
 import AdminBlogPage from './pages/admin/AdminBlogPage';
 import AdminBlogPostFormPage from './pages/admin/AdminBlogPostFormPage';
+import AdminOrdersPage from './pages/admin/AdminOrdersPage';
 
 import ScrollToTop from './components/ScrollToTop';
 import SEO from './components/SEO';
@@ -58,6 +61,7 @@ function App() {
                     <Route path="/adminshreeshyamsilvernokha/blogs" element={<AdminBlogPage />} />
                     <Route path="/adminshreeshyamsilvernokha/blogs/new" element={<AdminBlogPostFormPage />} />
                     <Route path="/adminshreeshyamsilvernokha/blogs/edit/:id" element={<AdminBlogPostFormPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/orders" element={<AdminOrdersPage />} />
 
                     {/* Public Routes - With Header/Footer */}
                     <Route path="/*" element={
@@ -78,6 +82,7 @@ function App() {
                                     <Route path="/cart" element={<CartPage />} />
                                     <Route path="/checkout" element={<CheckoutPage />} />
                                     <Route path="/account" element={<AccountPage />} />
+                                    <Route path="/orders" element={<MyOrdersPage />} />
                                     <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
                                     <Route path="/return-policy" element={<ReturnPolicyPage />} />
                                     <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
