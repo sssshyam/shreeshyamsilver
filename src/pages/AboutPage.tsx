@@ -7,7 +7,7 @@ export default function AboutPage() {
             <div className="relative h-96 flex items-center bg-[url('https://img.freepik.com/free-photo/silver-metal-texture-background_53876-88695.jpg')] bg-cover bg-center">
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="container-custom relative z-10 text-white text-center">
-                    <h1 className="text-white mb-4 drop-shadow-lg">Our Heritage</h1>
+                    <h1 className="text-white mb-4 drop-shadow-lg">About Us</h1>
                     <p className="text-xl text-silver-100 max-w-2xl mx-auto drop-shadow-md">
                         A timeless tradition of elegance and purity
                     </p>
@@ -27,18 +27,18 @@ export default function AboutPage() {
                                 />
                             </div>
                             <div>
-                                <h2 className="mb-6">A Legacy of Excellence Since 2022</h2>
+                                <h2 className="mb-6">Crafting Timeless Silver Masterpieces</h2>
                                 <div className="space-y-6 text-lg text-silver-700 leading-relaxed">
                                     <p>
-                                        ShreeShyamSilver is a premium manufacturer of silver-plated home décor and pooja items, proudly based in Nokha and Bikaner, Rajasthan. Established in 2022, our brand is building on a strong foundation of quality and trust.
+                                        ShreeShyamSilver is a premier manufacturer of exquisite silver-plated home décor and pooja essentials, proudly rooted in the heritage-rich city of Nokha and Bikaner, Rajasthan. We are founded on an enduring commitment to trust, purity, and artistic excellence.
                                     </p>
 
                                     <p>
-                                        With deep expertise in traditional silver work and a passion for quality craftsmanship, we have transformed ShreeShyamSilver into a trusted brand that blends heritage with modern elegance.
+                                        With deep expertise in traditional silver work and a passion for refined craftsmanship, we have established ShreeShyamSilver as a symbol of luxury and devotion. Our brand seamlessly blends the grandeur of royal heritage with contemporary elegance.
                                     </p>
 
                                     <p>
-                                        Every product is handcrafted by skilled artisans using time-honoured techniques, supported by strict quality checks to ensure long-lasting shine and durability. From pooja essentials to home décor accents, our pieces reflect our core values—authentic craftsmanship, consistent quality, and timeless beauty.
+                                        Every masterpiece is handcrafted by master artisans using age-old techniques, ensuring that each curve and carving tells a story. From divine pooja articles to regal home accents, our creations are designed to be cherished heirlooms—reflecting authentic artistry, uncompromising quality, and eternal beauty.
                                     </p>
                                 </div>
                             </div>

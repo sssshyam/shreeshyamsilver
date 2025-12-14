@@ -77,6 +77,24 @@ export default function AdminProductsPage() {
         }
     };
 
+    const toggleFeatured = async (id: number, currentStatus: boolean) => {
+        try {
+            const { error } = await supabase
+                .from('products')
+                .update({ is_featured: !currentStatus })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            setProducts(products.map(p =>
+                p.id === id ? { ...p, is_featured: !currentStatus } : p
+            ));
+        } catch (error) {
+            console.error('Error updating product featured status:', error);
+            alert('Failed to update product featured status');
+        }
+    };
+
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.slug.toLowerCase().includes(searchTerm.toLowerCase())
@@ -182,15 +200,26 @@ export default function AdminProductsPage() {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <button
-                                                    onClick={() => toggleActive(product.id, product.is_active)}
-                                                    className={`px-3 py-1 rounded-full text-xs font-medium ${product.is_active
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : 'bg-red-100 text-red-800'
-                                                        }`}
-                                                >
-                                                    {product.is_active ? 'Active' : 'Inactive'}
-                                                </button>
+                                                <div className="flex flex-col gap-2">
+                                                    <button
+                                                        onClick={() => toggleActive(product.id, product.is_active)}
+                                                        className={`px-3 py-1 rounded-full text-xs font-medium w-fit ${product.is_active
+                                                            ? 'bg-green-100 text-green-800'
+                                                            : 'bg-red-100 text-red-800'
+                                                            }`}
+                                                    >
+                                                        {product.is_active ? 'Active' : 'Inactive'}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => toggleFeatured(product.id, product.is_featured)}
+                                                        className={`px-3 py-1 rounded-full text-xs font-medium w-fit ${product.is_featured
+                                                            ? 'bg-purple-100 text-purple-800'
+                                                            : 'bg-gray-100 text-gray-800'
+                                                            }`}
+                                                    >
+                                                        {product.is_featured ? 'Featured' : 'Standard'}
+                                                    </button>
+                                                </div>
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <div className="flex items-center justify-end gap-2">
