@@ -58,15 +58,6 @@ export default function BlogPostPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Image */}
-            <div className="relative h-96">
-                <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
-
             {/* Content */}
             <article className="container-custom py-12">
                 <div className="max-w-3xl mx-auto">
@@ -127,14 +118,6 @@ export default function BlogPostPage() {
                                     to={`/blog/${relatedPost.slug}`}
                                     className="card-hover overflow-hidden group"
                                 >
-                                    <div className="relative h-48 overflow-hidden">
-                                        <img
-                                            src={relatedPost.image}
-                                            alt={relatedPost.title}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            loading="lazy"
-                                        />
-                                    </div>
                                     <div className="p-6">
                                         <p className="text-sm text-silver-600 mb-2">{relatedPost.read_time}</p>
                                         <h4 className="font-serif font-medium mb-2 group-hover:text-accent transition-colors">

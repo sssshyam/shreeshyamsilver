@@ -61,14 +61,14 @@ export default function WhyChooseUsPage() {
                             <div className="flex flex-col md:flex-row gap-8 items-center">
                                 <div className="w-full md:w-1/3">
                                     <div className="bg-accent/5 p-8 rounded-full aspect-square flex flex-col items-center justify-center text-center border-2 border-accent/20">
-                                        <span className="text-5xl font-serif text-accent mb-2">BIS</span>
-                                        <span className="text-lg font-semibold text-silver-800">Hallmark Certified</span>
+                                        <span className="text-5xl font-serif text-accent mb-2">100%</span>
+                                        <span className="text-lg font-semibold text-silver-800">Quality Assured</span>
                                     </div>
                                 </div>
                                 <div className="w-full md:w-2/3">
-                                    <h2 className="mb-4">Guaranteed Purity</h2>
+                                    <h2 className="mb-4">Unmatched Quality</h2>
                                     <p className="text-lg text-silver-700 leading-relaxed">
-                                        We sell only authentic silver products. Our exquisite items come with BIS Hallmarking, guaranteeing the purity you pay for. In a market where trust is everything, we stand by the quality of every gram of silver we provide.
+                                        We sell only authentic silver products. Our exquisite items are crafted with the highest standards of quality control. In a market where trust is everything, we stand by the quality of every gram of silver we provide, ensuring you get the premium value you deserve.
                                     </p>
                                 </div>
                             </div>

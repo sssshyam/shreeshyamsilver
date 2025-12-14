@@ -8,7 +8,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
                 </p>
                 <h3 class="text-xl font-semibold text-silver-900">Why Silver is a Timeless Choice</h3>
                 <p>
-                    Silver has always held a special place in Indian traditions. Beyond its lustrous appeal, it is considered auspicious and pure, making it an integral part of our daily rituals and special celebrations. Whether you are looking for a centerpiece for your living room or a sacred idol for your home temple, silver adds a touch of divinity and sophistication. At Shree Shyam Silver, we ensure that every piece you choose is crafted with 99.9% purity and attention to detail, making it a valuable addition to your home or a cherished gift for your loved ones.
+                    Silver has always held a special place in Indian traditions. Beyond its lustrous appeal, it is considered auspicious and pure, making it an integral part of our daily rituals and special celebrations. Whether you are looking for a centerpiece for your living room or a sacred idol for your home temple, silver adds a touch of divinity and sophistication. At Shree Shyam Silver, we ensure that every piece you choose is crafted with exceptional attention to detail, making it a valuable addition to your home or a cherished gift for your loved ones.
                 </p>
                 <h3 class="text-xl font-semibold text-silver-900">A Collection for Every Occasion</h3>
                 <p>
@@ -27,7 +27,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
                 </p>
                  <h3 class="text-xl font-semibold text-silver-900">The Shree Shyam Silver Promise</h3>
                 <p>
-                   When you shop with us, you are not just buying a product; you are investing in quality. All our items are BIS Hallmark certified, ensuring that you get the purity you pay for. Our transparent pricing and commitment to customer satisfaction have made us a trusted name in Nokha and beyond. We invite you to explore our categories and experience the unmatched beauty of handcrafted silver.
+                   When you shop with us, you are not just buying a product; you are investing in quality. All our items undergo rigorous quality checks, ensuring that you get the purity you pay for. Our transparent pricing and commitment to customer satisfaction have made us a trusted name in Nokha and beyond. We invite you to explore our categories and experience the unmatched beauty of handcrafted silver.
                 </p>
             </div>
         `
@@ -42,7 +42,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">The Spiritual Significance of Silver</h3>
                 <p>
-                    Using silver in religious ceremonies is a tradition passed down through generations. It is believed to channel positive energy and repel negativity. Our range includes beautifully crafted idols of Lord Ganesha, Goddess Laxmi, and Lord Krishna, each capturing divine grace in intricate detail. We also offer silver Thalis, Kalash, and Aachmani sets that are essential for daily worship and special festivals like Diwali, Navratri, and Janmashtami. Using these pure silver items not only elevates the sanctity of your rituals but also brings a sense of calm and devotion to your prayer room.
+                    Using silver in religious ceremonies is a tradition passed down through generations. It is believed to channel positive energy and repel negativity. Our range includes beautifully crafted idols of Lord Ganesha, Goddess Laxmi, and Lord Krishna, each capturing divine grace in intricate detail. We also offer silver Thalis, Kalash, and Aachmani sets that are essential for daily worship and special festivals like Diwali, Navratri, and Janmashtami. Using these authentic silver items not only elevates the sanctity of your rituals but also brings a sense of calm and devotion to your prayer room.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Elevate Your Home Interiors</h3>

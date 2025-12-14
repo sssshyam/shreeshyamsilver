@@ -194,7 +194,7 @@ export default function NokhaPage() {
                             </div>
                             <h3 className="text-xl font-serif font-semibold mb-3">Authentic Products</h3>
                             <p className="text-silver-600">
-                                Every piece is BIS hallmark certified and comes with authenticity certificate
+                                Each piece is quality checked and comes with authenticity certificate
                             </p>
                         </div>
 

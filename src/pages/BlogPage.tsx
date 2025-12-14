@@ -56,14 +56,6 @@ export default function BlogPage() {
                                 to={`/blog/${post.slug}`}
                                 className="card-hover overflow-hidden group"
                             >
-                                <div className="relative h-64 overflow-hidden">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                        loading="lazy"
-                                    />
-                                </div>
                                 <div className="p-6">
                                     <div className="flex items-center gap-4 text-sm text-silver-600 mb-3">
                                         <span>{post.date}</span>

@@ -19,6 +19,7 @@ import AccountPage from './pages/AccountPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import NokhaPage from './pages/NokhaPage';
+import ContactPage from './pages/ContactPage';
 import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import ShippingPolicyPage from './pages/ShippingPolicyPage';
 import WhyChooseUsPage from './pages/WhyChooseUsPage';
@@ -44,6 +45,8 @@ function App() {
             <AdminProvider>
                 <Routes>
                     {/* Admin Routes - No Header/Footer */}
+                    <Route path="/admin" element={<AdminLoginPage />} />
+                    <Route path="/admin-login" element={<AdminLoginPage />} />
                     <Route path="/adminshreeshyamsilvernokha/login" element={<AdminLoginPage />} />
                     <Route path="/adminshreeshyamsilvernokha/dashboard" element={<AdminDashboard />} />
                     <Route path="/adminshreeshyamsilvernokha/products" element={<AdminProductsPage />} />
@@ -69,6 +72,7 @@ function App() {
                                     <Route path="/product/:slug" element={<ProductDetailPage />} />
                                     <Route path="/about" element={<AboutPage />} />
                                     <Route path="/nokha" element={<NokhaPage />} />
+                                    <Route path="/contact" element={<ContactPage />} />
                                     <Route path="/blog" element={<BlogPage />} />
                                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                                     <Route path="/cart" element={<CartPage />} />

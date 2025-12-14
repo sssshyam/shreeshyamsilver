@@ -93,7 +93,7 @@ export default function HomePage() {
                             Handcrafted Silver Treasures
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 text-silver-100 leading-relaxed">
-                            Three generations of master craftsmanship. 99.9% pure silver. BIS hallmark certified.
+                            Three generations of master craftsmanship. Premium quality silver. Authenticity guaranteed.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link to="/shop" className="btn-primary btn-lg">
@@ -106,9 +106,9 @@ export default function HomePage() {
                         <div className="mt-8 flex flex-wrap gap-6 text-sm">
                             <div className="flex items-center gap-2">
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
-                                <span>BIS Hallmark Certified</span>
+                                <span>Premium Quality</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -166,6 +166,29 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Best Sellers Section */}
+            <section className="section-padding bg-silver-50">
+                <div className="container-custom">
+                    <div className="text-center mb-12">
+                        <h2 className="mb-4">Best Sellers</h2>
+                        <p className="text-silver-600 max-w-2xl mx-auto">
+                            Our most loved products, chosen by you
+                        </p>
+                    </div>
+
+                    {featuredProducts.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {featuredProducts.slice(0, 4).map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-silver-600">No best sellers available</p>
+                    )}
+                </div>
+            </section>
+
+
             {/* Trust & Authority */}
             <section className="section-padding bg-silver-50">
                 <div className="container-custom">
@@ -187,8 +210,8 @@ export default function HomePage() {
                                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
                             </div>
-                            <h4 className="mb-2">BIS Hallmark</h4>
-                            <p className="text-silver-600">Every piece certified for purity and authenticity</p>
+                            <h4 className="mb-2">Quality Assurance</h4>
+                            <p className="text-silver-600">Every piece certified for authenticity</p>
                         </div>
 
                         <div className="text-center">

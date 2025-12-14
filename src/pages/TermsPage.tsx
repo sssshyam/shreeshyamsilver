@@ -25,7 +25,7 @@ export default function TermsPage() {
                         </p>
                         <ul className="list-disc pl-6 text-silver-700 space-y-2 mb-4">
                             <li>Product images are for illustration purposes and actual products may vary slightly</li>
-                            <li>All silver products are BIS hallmark certified with guaranteed purity</li>
+                            <li>All silver products are quality assured for authenticity</li>
                             <li>Weights mentioned are approximate and may vary by ±2%</li>
                             <li>We reserve the right to correct any errors in product information or pricing</li>
                         </ul>
@@ -67,7 +67,7 @@ export default function TermsPage() {
                         <ul className="list-disc pl-6 text-silver-700 space-y-2 mb-4">
                             <li>7-day return window from date of delivery</li>
                             <li>Products must be unused and in original packaging</li>
-                            <li>BIS hallmark certificate must be returned with the product</li>
+                            <li>Authenticity certificate must be returned with the product</li>
                             <li>Customized or engraved items cannot be returned</li>
                             <li>Refunds will be processed within 7-10 business days</li>
                         </ul>
@@ -79,8 +79,8 @@ export default function TermsPage() {
                             We guarantee that all our silver products are:
                         </p>
                         <ul className="list-disc pl-6 text-silver-700 space-y-2 mb-4">
-                            <li>Made from genuine 99.9% pure silver or 92.5% sterling silver</li>
-                            <li>BIS hallmark certified</li>
+                            <li>Made from genuine high-quality silver</li>
+                            <li>Authenticity certified</li>
                             <li>Accompanied by an authenticity certificate</li>
                             <li>Handcrafted by skilled artisans</li>
                         </ul>
@@ -101,9 +101,9 @@ export default function TermsPage() {
                         </p>
                         <div className="bg-silver-50 p-6 rounded-sm">
                             <p className="text-silver-700">
-                                Email: info@luxurysilver.com<br />
-                                Phone: +91 123 456 7890<br />
-                                Address: 123 Silver Street, Mumbai, Maharashtra 400001, India
+                                Email: shreeshyamsilvernokha@gmail.com<br />
+                                Phone: +91 85040 47243<br />
+                                Address: Tehsil Road, Near Ambedkar Circle, Nokha, Rajasthan - 334803
                             </p>
                         </div>
                     </section>

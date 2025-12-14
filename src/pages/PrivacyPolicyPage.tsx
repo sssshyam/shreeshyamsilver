@@ -76,9 +76,9 @@ export default function PrivacyPolicyPage() {
                         </p>
                         <div className="bg-silver-50 p-6 rounded-sm">
                             <p className="text-silver-700">
-                                Email: privacy@luxurysilver.com<br />
-                                Phone: +91 123 456 7890<br />
-                                Address: 123 Silver Street, Mumbai, Maharashtra 400001, India
+                                Email: shreeshyamsilvernokha@gmail.com<br />
+                                Phone: +91 85040 47243<br />
+                                Address: Tehsil Road, Near Ambedkar Circle, Nokha, Rajasthan - 334803
                             </p>
                         </div>
                     </section>

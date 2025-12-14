@@ -20,7 +20,7 @@ export default function Header() {
                 <div className="border-b border-silver-100 py-2 text-sm text-silver-600 hidden md:block">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-6">
-                            <span>✓ BIS Hallmark Certified</span>
+                            <span>✓ Premium Quality Silver</span>
                             <span>✓ Free Secure Delivery</span>
                             <span>✓ 100% Authentic</span>
                         </div>
@@ -60,6 +60,9 @@ export default function Header() {
                             </Link>
                             <Link to="/nokha" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Nokha Showroom
+                            </Link>
+                            <Link to="/contact" className="text-silver-700 hover:text-accent transition-colors font-medium">
+                                Contact
                             </Link>
                             <Link to="/blog" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Blog
@@ -188,6 +191,13 @@ export default function Header() {
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 Nokha Showroom
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="text-silver-700 hover:text-accent transition-colors font-medium py-2"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Contact
                             </Link>
                             <Link
                                 to="/blog"

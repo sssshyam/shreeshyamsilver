@@ -47,6 +47,54 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Featured Categories */}
+            <section className="w-full">
+                <div className="grid md:grid-cols-2">
+                    {/* Silver Bowls */}
+                    <div className="relative bg-[#6B7C8E] overflow-hidden group min-h-[400px]">
+                        <div className="absolute inset-0 flex justify-end">
+                            <img
+                                src="https://i.ibb.co/TDgxmzhw/IMG-8957.jpg"
+                                alt="Silver Bowls"
+                                className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#6B7C8E] via-[#6B7C8E]/80 to-transparent" />
+                        </div>
+                        <div className="relative z-10 p-12 h-full flex flex-col justify-center max-w-lg">
+                            <h2 className="text-3xl text-white mb-6 font-serif">Silver Bowls</h2>
+                            <p className="text-silver-100 mb-8 text-lg leading-relaxed">
+                                Beautifully designed pooja sets, diyas, jyots, plates and more. A complete collection of silver and silver plated products for all occasions and festivals.
+                            </p>
+                            <Link to="/shop/category/decorative-bowls" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#6B7C8E] transition-colors w-fit uppercase tracking-wider text-sm">
+                                Explore More
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Silver Jars */}
+                    <div className="relative bg-[#0B1C38] overflow-hidden group min-h-[400px]">
+                        <div className="absolute inset-0 flex justify-end">
+                            <img
+                                src="https://i.ibb.co/JwvY0X96/IMG-8961.jpg"
+                                alt="Silver Jars"
+                                className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
+                            />
+                            {/* Reduced gradient opacity to show image better */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1C38] via-[#0B1C38]/60 to-transparent" />
+                        </div>
+                        <div className="relative z-10 p-12 h-full flex flex-col justify-center max-w-lg">
+                            <h2 className="text-3xl text-white mb-6 font-serif">Silver Jars</h2>
+                            <p className="text-silver-100 mb-8 text-lg leading-relaxed">
+                                Be it a tea party or raising a toast. Be the talk of the town with our unmatched designs of silver tea sets, silver plated glasses, dinner sets and much more.
+                            </p>
+                            <Link to="/shop/category/pooja-and-home-decor" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#0B1C38] transition-colors w-fit uppercase tracking-wider text-sm">
+                                Explore More
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Values */}
             <section className="section-padding bg-silver-50">
                 <div className="container-custom">
@@ -61,7 +109,7 @@ export default function AboutPage() {
                             </div>
                             <h3 className="mb-3">Purity</h3>
                             <p className="text-silver-600">
-                                We use only 99.9% pure silver and 92.5% sterling silver, certified by BIS hallmark
+                                We use only premium quality silver, certified for authenticity
                             </p>
                         </div>
 
@@ -107,7 +155,7 @@ export default function AboutPage() {
                                 <h4 className="mb-2">Sourcing Pure Silver</h4>
                                 <p className="text-silver-600">
                                     We source only the finest quality silver from certified suppliers, ensuring
-                                    99.9% purity for all our creations.
+                                    premium quality for all our creations.
                                 </p>
                             </div>
                         </div>
@@ -145,7 +193,7 @@ export default function AboutPage() {
                             <div>
                                 <h4 className="mb-2">Quality Assurance</h4>
                                 <p className="text-silver-600">
-                                    Every piece undergoes rigorous quality checks and receives BIS hallmark
+                                    Every piece undergoes rigorous quality checks and receives authenticity
                                     certification before reaching you.
                                 </p>
                             </div>
