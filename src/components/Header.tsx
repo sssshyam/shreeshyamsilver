@@ -1,17 +1,24 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import AuthModal from './auth/AuthModal';
 import CartModal from './cart/CartModal';
+import { getCategories } from '../services/api';
+import { Category } from '../types';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [showCartModal, setShowCartModal] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
     const { user, logout } = useAuth();
     const { cartCount } = useCart();
+
+    useEffect(() => {
+        getCategories().then(setCategories);
+    }, []);
 
     return (
         <header className="bg-white border-b border-silver-200 sticky top-0 z-50">
@@ -49,9 +56,33 @@ export default function Header() {
                             <Link to="/" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Home
                             </Link>
-                            <Link to="/shop" className="text-silver-700 hover:text-accent transition-colors font-medium">
-                                Shop
-                            </Link>
+
+                            {/* Shop Dropdown */}
+                            <div className="relative group">
+                                <Link to="/shop" className="text-silver-700 hover:text-accent transition-colors font-medium flex items-center gap-1">
+                                    Shop
+                                    <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </Link>
+                                <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 w-56">
+                                    <div className="bg-white shadow-xl rounded-lg border border-silver-100 overflow-hidden">
+                                        <Link to="/shop" className="block px-4 py-3 text-sm text-silver-700 hover:bg-silver-50 hover:text-accent border-b border-silver-50">
+                                            All Products
+                                        </Link>
+                                        {categories.map((category) => (
+                                            <Link
+                                                key={category.id}
+                                                to={`/shop/category/${category.slug}`}
+                                                className="block px-4 py-3 text-sm text-silver-700 hover:bg-silver-50 hover:text-accent border-b border-silver-50 last:border-none"
+                                            >
+                                                {category.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
                             <Link to="/category" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Categories
                             </Link>

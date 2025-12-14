@@ -307,9 +307,9 @@ export default function ProductDetailPage() {
 
                         {/* Note */}
                         {product.note && (
-                            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-sm mb-6">
-                                <h4 className="font-semibold text-yellow-800 mb-2">Note:</h4>
-                                <p className="text-yellow-800 text-sm whitespace-pre-line">{product.note}</p>
+                            <div className="bg-blue-50 border border-blue-100 p-4 rounded-sm mb-6">
+                                <h4 className="font-semibold text-blue-900 mb-2">Note:</h4>
+                                <p className="text-blue-800 text-sm whitespace-pre-line">{product.note}</p>
                             </div>
                         )}
                     </div>
@@ -359,7 +359,6 @@ export default function ProductDetailPage() {
                                     <li>• Free delivery on all orders</li>
                                     <li>• Secure packaging with insurance</li>
                                     <li>• Delivery within 5-7 business days</li>
-                                    <li>• Track your order online</li>
                                 </ul>
                             </div>
                             <div className="p-6 bg-silver-50 rounded-sm">
