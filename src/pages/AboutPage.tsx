@@ -55,17 +55,17 @@ export default function AboutPage() {
                         <div className="absolute inset-0 flex justify-end">
                             <img
                                 src="https://i.ibb.co/TDgxmzhw/IMG-8957.jpg"
-                                alt="Silver Bowls"
+                                alt="Pooja Décor"
                                 className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-r from-[#6B7C8E] via-[#6B7C8E]/80 to-transparent" />
                         </div>
                         <div className="relative z-10 p-12 h-full flex flex-col justify-center max-w-lg">
-                            <h2 className="text-3xl text-white mb-6 font-serif">Silver Bowls</h2>
+                            <h2 className="text-3xl text-white mb-6 font-serif">Pooja Décor</h2>
                             <p className="text-silver-100 mb-8 text-lg leading-relaxed">
-                                Beautifully designed pooja sets, diyas, jyots, plates and more. A complete collection of silver and silver plated products for all occasions and festivals.
+                                Discover a thoughtfully curated range of pooja décor essentials, beautifully crafted to add grace and purity to your sacred spaces. From intricately designed pooja thalis, diyas, jyots, and kalash to timeless silver and silver-plated articles — our collection is perfect for daily rituals, festivals, and special occasions.
                             </p>
-                            <Link to="/shop/category/decorative-bowls" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#6B7C8E] transition-colors w-fit uppercase tracking-wider text-sm">
+                            <Link to="/shop/category/pooja-and-home-decor" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#6B7C8E] transition-colors w-fit uppercase tracking-wider text-sm">
                                 Explore More
                             </Link>
                         </div>
@@ -76,18 +76,18 @@ export default function AboutPage() {
                         <div className="absolute inset-0 flex justify-end">
                             <img
                                 src="https://i.ibb.co/JwvY0X96/IMG-8961.jpg"
-                                alt="Silver Jars"
+                                alt="Home Décor"
                                 className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
                             />
                             {/* Reduced gradient opacity to show image better */}
                             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1C38] via-[#0B1C38]/60 to-transparent" />
                         </div>
                         <div className="relative z-10 p-12 h-full flex flex-col justify-center max-w-lg">
-                            <h2 className="text-3xl text-white mb-6 font-serif">Silver Jars</h2>
+                            <h2 className="text-3xl text-white mb-6 font-serif">Home Décor</h2>
                             <p className="text-silver-100 mb-8 text-lg leading-relaxed">
-                                Be it a tea party or raising a toast. Be the talk of the town with our unmatched designs of silver tea sets, silver plated glasses, dinner sets and much more.
+                                Elevate your home with our exquisite collection of silver and silver-plated décor pieces designed to blend tradition with modern elegance. Whether it’s for hosting guests, festive styling, or everyday luxury, our décor accents, serveware, and statement pieces bring charm and sophistication to every corner of your home.
                             </p>
-                            <Link to="/shop/category/pooja-and-home-decor" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#0B1C38] transition-colors w-fit uppercase tracking-wider text-sm">
+                            <Link to="/shop/category/decorative-bowls" className="inline-block border border-white text-white px-8 py-3 hover:bg-white hover:text-[#0B1C38] transition-colors w-fit uppercase tracking-wider text-sm">
                                 Explore More
                             </Link>
                         </div>
