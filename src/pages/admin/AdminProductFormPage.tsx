@@ -40,6 +40,16 @@ export default function AdminProductFormPage() {
         { label: '', value: '' }
     ]);
 
+    // Dedicated Dimensions State
+    const [dimensions, setDimensions] = useState({
+        length: '',
+        width: '',
+        height: '',
+        diameter: '',
+        size: '',
+        dimensions: '' // General dimensions field
+    });
+
     // Care instructions (dynamic array)
     const [careInstructions, setCareInstructions] = useState<string[]>(['']);
 
@@ -105,6 +115,16 @@ export default function AdminProductFormPage() {
             if (data.specifications) {
                 setSpecifications(data.specifications.length > 0 ? data.specifications : [{ label: '', value: '' }]);
             }
+
+            // Load dimensions from columns
+            setDimensions({
+                length: data.length || '',
+                width: data.width || '',
+                height: data.height || '',
+                diameter: data.diameter || '',
+                size: data.size || '',
+                dimensions: data.dimensions || ''
+            });
 
             if (data.care_instructions) {
                 setCareInstructions(data.care_instructions.length > 0 ? data.care_instructions : ['']);
@@ -229,6 +249,15 @@ export default function AdminProductFormPage() {
                 weight: formData.weight,
                 hallmark: formData.hallmark,
                 use_case: formData.use_case,
+
+                // Save Dimensions to Columns
+                size: dimensions.size || null,
+                length: dimensions.length || null,
+                width: dimensions.width || null,
+                height: dimensions.height || null,
+                diameter: dimensions.diameter || null,
+                dimensions: dimensions.dimensions || null,
+
                 specifications: validSpecs.length > 0 ? validSpecs : null,
                 care_instructions: validCare.length > 0 ? validCare : null,
                 highlights: validHighlights.length > 0 ? validHighlights : null,
@@ -583,6 +612,91 @@ export default function AdminProductFormPage() {
                                     />
                                     <span className="text-sm font-medium text-silver-700">In Stock</span>
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Dimensions & Sizing */}
+                    <div className="bg-white rounded-lg shadow p-6">
+                        <h2 className="text-xl font-semibold mb-6">Dimensions & Sizing</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Size
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.size}
+                                    onChange={(e) => setDimensions({ ...dimensions, size: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 14.5 inch"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Dimensions (General)
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.dimensions}
+                                    onChange={(e) => setDimensions({ ...dimensions, dimensions: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 10x10x5 inches"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Height
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.height}
+                                    onChange={(e) => setDimensions({ ...dimensions, height: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 14.5 inches"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Width
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.width}
+                                    onChange={(e) => setDimensions({ ...dimensions, width: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 8 inches"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Length
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.length}
+                                    onChange={(e) => setDimensions({ ...dimensions, length: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 12 inches"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-silver-700 mb-2">
+                                    Diameter
+                                </label>
+                                <input
+                                    type="text"
+                                    value={dimensions.diameter}
+                                    onChange={(e) => setDimensions({ ...dimensions, diameter: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                                    className="input w-full"
+                                    placeholder="e.g., 8.5 inches"
+                                />
                             </div>
                         </div>
                     </div>

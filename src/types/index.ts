@@ -32,6 +32,14 @@ export interface Product {
     use_case?: 'Gift' | 'Pooja' | 'Decor' | 'All';
     highlights?: string[];
     note?: string;
+
+    // Dimensions & Sizing
+    size?: string;
+    length?: string;
+    width?: string;
+    height?: string;
+    dimensions?: string;
+    diameter?: string;
 }
 
 export interface Category {

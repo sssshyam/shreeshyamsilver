@@ -317,6 +317,51 @@ export default function ProductDetailPage() {
 
                 {/* Below the Fold Content */}
                 <div className="mt-16 space-y-12">
+                    {/* Dimensions & Sizing (New Section) */}
+                    {(product.size || product.dimensions || product.length || product.width || product.height || product.diameter) && (
+                        <div>
+                            <h3 className="text-2xl font-serif font-semibold mb-6">Dimensions & Sizing</h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {product.size && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Size</span>
+                                        <span className="font-medium text-accent">{product.size}</span>
+                                    </div>
+                                )}
+                                {product.dimensions && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Dimensions</span>
+                                        <span className="font-medium text-accent">{product.dimensions}</span>
+                                    </div>
+                                )}
+                                {product.length && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Length</span>
+                                        <span className="font-medium text-accent">{product.length}</span>
+                                    </div>
+                                )}
+                                {product.width && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Width</span>
+                                        <span className="font-medium text-accent">{product.width}</span>
+                                    </div>
+                                )}
+                                {product.height && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Height</span>
+                                        <span className="font-medium text-accent">{product.height}</span>
+                                    </div>
+                                )}
+                                {product.diameter && (
+                                    <div className="flex justify-between p-4 bg-silver-50 rounded-sm">
+                                        <span className="text-silver-600">Diameter</span>
+                                        <span className="font-medium text-accent">{product.diameter}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
                     {/* Specifications */}
                     {product.specifications && product.specifications.length > 0 && (
                         <div>
