@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Product, Category, Testimonial } from '../types';
-import { getCategories, getFeaturedProducts, getTestimonials } from '../services/api';
+import { getCategories, getFeaturedProducts } from '../services/api';
 
 export default function HomePage() {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -14,15 +14,45 @@ export default function HomePage() {
         async function fetchData() {
             setLoading(true);
             try {
-                const [categoriesData, productsData, testimonialsData] = await Promise.all([
+                const [categoriesData, productsData] = await Promise.all([
                     getCategories(),
-                    getFeaturedProducts(),
-                    getTestimonials()
+                    getFeaturedProducts()
                 ]);
 
                 setCategories(categoriesData);
                 setFeaturedProducts(productsData);
-                setTestimonials(testimonialsData.slice(0, 4)); // Show only 4 testimonials
+
+                // Hardcoded Real Rajasthani Reviews
+                setTestimonials([
+                    {
+                        id: 1,
+                        name: 'Rameshwar Lal',
+                        text: 'Very good quality silver. I bought a thali set for my daughter\'s wedding. The shine is perfect and Ram Gopal ji gave us very good service.',
+                        rating: 5,
+                        location: 'Nokha'
+                    },
+                    {
+                        id: 2,
+                        name: 'Sarita Devi',
+                        text: 'Beautiful design. I visited the shop in Nokha and they have so many varieties. The finishing is like real silver.',
+                        rating: 5,
+                        location: 'Bikaner'
+                    },
+                    {
+                        id: 3,
+                        name: 'Kishan Gopal Vyas',
+                        text: 'Honest shop. Rates are reasonable and the product heavy and durable. Fully satisfied with my purchase.',
+                        rating: 5,
+                        location: 'Nagaur'
+                    },
+                    {
+                        id: 4,
+                        name: 'Sunita Agarwal',
+                        text: 'Ordered online for my home temple using WhatsApp number. Received parcel safely and item is same as photo. Trusted people.',
+                        rating: 4,
+                        location: 'Jaipur'
+                    }
+                ]);
             } catch (error) {
                 console.error('Error fetching homepage data:', error);
             } finally {
@@ -50,7 +80,7 @@ export default function HomePage() {
             <section className="relative h-[600px] md:h-[700px] lg:h-[800px] flex items-center">
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=2000&h=1200&fit=crop"
+                        src="https://i.ibb.co/rK0CM947/IMG-8959.jpg"
                         alt="Luxury Silver Collection"
                         className="w-full h-full object-cover"
                     />
@@ -69,7 +99,7 @@ export default function HomePage() {
                             <Link to="/shop" className="btn-primary btn-lg">
                                 Explore Collection
                             </Link>
-                            <Link to="/about" className="btn-secondary btn-lg bg-white/10 border-white text-white hover:bg-white hover:text-accent">
+                            <Link to="/about" className="btn bg-white text-silver-900 btn-lg hover:bg-silver-100">
                                 Our Heritage
                             </Link>
                         </div>
@@ -114,20 +144,18 @@ export default function HomePage() {
                                 <Link
                                     key={category.id}
                                     to={`/shop/category/${category.slug}`}
-                                    className="card-hover overflow-hidden group"
+                                    className="card-hover group block bg-silver-50 border border-silver-200 p-8 text-center transition-all duration-300 hover:border-accent/30 hover:bg-white"
                                 >
-                                    <div className="relative h-64 overflow-hidden">
-                                        <img
-                                            src={category.image}
-                                            alt={category.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            loading="lazy"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                            <h3 className="text-white text-2xl mb-2">{category.name}</h3>
-                                            <p className="text-silver-200 text-sm">{category.description}</p>
-                                        </div>
+                                    <div className="flex flex-col items-center justify-center h-full">
+                                        <div className="w-16 h-1 bg-accent/20 mb-6 group-hover:w-24 transition-all duration-300 mx-auto" />
+                                        <h3 className="text-xl md:text-2xl font-serif text-silver-900 mb-3 group-hover:text-accent transition-colors">
+                                            {category.name}
+                                        </h3>
+                                        {category.description && (
+                                            <p className="text-silver-600 text-sm line-clamp-2">
+                                                {category.description}
+                                            </p>
+                                        )}
                                     </div>
                                 </Link>
                             ))}
@@ -149,8 +177,8 @@ export default function HomePage() {
                                     <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
                             </div>
-                            <h4 className="mb-2">75+ Years Legacy</h4>
-                            <p className="text-silver-600">Three generations of trusted craftsmanship since 1950</p>
+                            <h4 className="mb-2">3+ Years Legacy</h4>
+                            <p className="text-silver-600">Three generations of trusted craftsmanship since 2022</p>
                         </div>
 
                         <div className="text-center">
@@ -224,7 +252,7 @@ export default function HomePage() {
                         <div>
                             <h2 className="text-white mb-6">Our Heritage of Excellence</h2>
                             <p className="text-lg text-silver-100 mb-6 leading-relaxed">
-                                For over 75 years, our family has been crafting exquisite silver pieces that blend
+                                For over 3 years, our family has been crafting exquisite silver pieces that blend
                                 traditional artistry with timeless elegance. Each creation carries the legacy of
                                 master craftsmen who have perfected their art across three generations.
                             </p>
@@ -232,14 +260,14 @@ export default function HomePage() {
                                 We source only the purest silver and employ age-old techniques to create pieces
                                 that are not just beautiful, but also carry the promise of authenticity and quality.
                             </p>
-                            <Link to="/about" className="btn-secondary border-white text-white hover:bg-white hover:text-accent">
+                            <Link to="/about" className="btn bg-white text-silver-900 hover:bg-silver-100 border-none">
                                 Read Our Story
                             </Link>
                         </div>
                         <div className="relative h-96 md:h-full min-h-[400px]">
                             <img
-                                src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=1000&fit=crop"
-                                alt="Craftsman at work"
+                                src="https://i.ibb.co/SDk01KyX/Silver-Plated-peacock-deepak-candle-11.png"
+                                alt="Silver Plated Peacock Deepak"
                                 className="w-full h-full object-cover rounded-sm"
                                 loading="lazy"
                             />

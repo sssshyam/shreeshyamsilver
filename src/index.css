@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply font-sans text-silver-900 bg-white antialiased;
+    @apply font-sans text-silver-900 bg-white antialiased overflow-x-hidden;
   }
 
   h1,
@@ -54,15 +54,15 @@
 
   /* Button Styles - Royal Theme */
   .btn {
-    @apply px-8 py-3 font-medium transition-all duration-300 rounded-sm inline-block text-center shadow-sm hover:shadow-md;
+    @apply px-8 py-3 font-medium transition-all duration-300 rounded-sm inline-block text-center shadow-sm hover:shadow-md cursor-pointer;
   }
 
   .btn-primary {
-    @apply btn bg-silver-700 text-white hover:bg-silver-800;
+    @apply btn bg-silver-700 text-white hover:bg-silver-800 hover:text-white;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-silver-700 border-2 border-silver-300 hover:bg-silver-50;
+    @apply btn bg-white text-silver-700 border-2 border-silver-300 hover:bg-silver-50 hover:text-silver-900;
   }
 
   .btn-lg {
@@ -104,7 +104,7 @@
 
   /* Input Styles */
   .input {
-    @apply w-full px-4 py-3 border border-silver-300 rounded-sm focus:outline-none focus:border-silver-600 focus:ring-2 focus:ring-silver-200 transition-all bg-white;
+    @apply w-full px-4 py-3 border border-silver-300 rounded-sm focus:outline-none focus:border-silver-600 focus:ring-2 focus:ring-silver-200 transition-all bg-white text-silver-900 placeholder-silver-400;
   }
 
   /* Badge */

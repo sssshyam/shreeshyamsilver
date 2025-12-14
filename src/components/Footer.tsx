@@ -5,13 +5,13 @@ export default function Footer() {
         <footer className="bg-accent text-white">
             {/* Map Section */}
             <div className="border-b border-white/10">
-                <div className="container-custom py-12">
-                    <h3 className="text-2xl font-serif font-semibold mb-6 text-center">Visit Our Showroom in Nokha</h3>
-                    <div className="rounded-sm overflow-hidden">
+                <div className="container-custom py-8">
+                    <h3 className="text-xl font-serif font-semibold mb-4 text-center">Visit Our Showroom in Nokha</h3>
+                    <div className="rounded-sm overflow-hidden max-w-4xl mx-auto">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18549.393250947494!2d73.46214150932106!3d27.54574616965854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396aa9e874b81b99%3A0xa1ab46079c719445!2sTahasil%20nokha!5e0!3m2!1sen!2sin!4v1765649310043!5m2!1sen!2sin"
                             width="100%"
-                            height="400"
+                            height="250"
                             style={{ border: 0 }}
                             allowFullScreen
                             loading="lazy"
@@ -34,23 +34,23 @@ export default function Footer() {
                             className="h-12 mb-4 w-auto"
                         />
                         <p className="text-silver-200 mb-6 leading-relaxed">
-                            Crafting exquisite silver pieces in Nokha, Rajasthan since 1950.
-                            Three generations of trust, purity, and heritage.
+                            Crafting exquisite silver pieces in Nokha, Rajasthan.
+                            Founded by Ram Gopal Chandak with 26 years of experience.
                         </p>
                         <div className="flex gap-4">
                             <a
-                                href="https://facebook.com"
+                                href="https://www.facebook.com/people/Shree-Shyam-Silver/61584020424594/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                                 aria-label="Facebook"
                             >
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.954 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                 </svg>
                             </a>
                             <a
-                                href="https://instagram.com"
+                                href="https://www.instagram.com/shreeshyamsilvers/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
@@ -76,31 +76,36 @@ export default function Footer() {
 
                     {/* Shop Links */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4">Shop</h4>
+                        <h4 className="text-lg font-semibold mb-4">Shop Categories</h4>
                         <ul className="space-y-3">
                             <li>
-                                <Link to="/shop" className="text-silver-200 hover:text-white transition-colors">
-                                    All Products
+                                <Link to="/shop/category/pooja-and-home-decor" className="text-silver-200 hover:text-white transition-colors">
+                                    Pooja & Home Decor
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/shop/category/pooja-silver" className="text-silver-200 hover:text-white transition-colors">
-                                    Pooja Silver
+                                <Link to="/shop/category/silver-photo-frames" className="text-silver-200 hover:text-white transition-colors">
+                                    Silver Photo Frames
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/shop/category/home-decor" className="text-silver-200 hover:text-white transition-colors">
-                                    Home Decor
+                                <Link to="/shop/category/dry-fruit-box" className="text-silver-200 hover:text-white transition-colors">
+                                    Dry Fruit Box
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/shop/category/gifting" className="text-silver-200 hover:text-white transition-colors">
-                                    Gifting
+                                <Link to="/shop/category/silver-candle-and-deepak-stands" className="text-silver-200 hover:text-white transition-colors">
+                                    Candle & Deepak Stands
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/shop/category/decorative-bowls" className="text-silver-200 hover:text-white transition-colors">
                                     Decorative Bowls
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/shop/category/resin-decor-items" className="text-silver-200 hover:text-white transition-colors">
+                                    Resin Decor Items
                                 </Link>
                             </li>
                         </ul>
@@ -116,13 +121,23 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/why-choose-us" className="text-silver-200 hover:text-white transition-colors">
+                                    Why Choose Us
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/nokha" className="text-silver-200 hover:text-white transition-colors">
                                     Visit Nokha Showroom
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/blog" className="text-silver-200 hover:text-white transition-colors">
-                                    Blog
+                                <Link to="/return-policy" className="text-silver-200 hover:text-white transition-colors">
+                                    Return Policy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/shipping-policy" className="text-silver-200 hover:text-white transition-colors">
+                                    Shipping Policy
                                 </Link>
                             </li>
                             <li>
@@ -177,8 +192,18 @@ export default function Footer() {
             <div className="border-t border-white/10">
                 <div className="container-custom py-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-silver-200">
-                        <p>© 2024 Shree Shyam Silver, Nokha. All rights reserved.</p>
-                        <p>Handcrafted with ❤️ in Nokha, Rajasthan</p>
+                        <p>© 2026 Shree Shyam Silver, Nokha. All rights reserved.</p>
+                        <p>
+                            Handcrafted with ❤️ in Nokha, Rajasthan | Created by{' '}
+                            <a
+                                href="https://www.instagram.com/bhagyashree_211?igsh=c3U5Y2k5cTkzY3Bp"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-white underline transition-colors"
+                            >
+                                Bhagyashree
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>

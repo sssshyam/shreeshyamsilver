@@ -13,6 +13,13 @@ export default function AdminProductsPage() {
         fetchProducts();
     }, []);
 
+    // Force refresh when component gains focus or mounts
+    useEffect(() => {
+        const handleFocus = () => fetchProducts();
+        window.addEventListener('focus', handleFocus);
+        return () => window.removeEventListener('focus', handleFocus);
+    }, []);
+
     const fetchProducts = async () => {
         setLoading(true);
         try {
@@ -178,8 +185,8 @@ export default function AdminProductsPage() {
                                                 <button
                                                     onClick={() => toggleActive(product.id, product.is_active)}
                                                     className={`px-3 py-1 rounded-full text-xs font-medium ${product.is_active
-                                                            ? 'bg-green-100 text-green-800'
-                                                            : 'bg-red-100 text-red-800'
+                                                        ? 'bg-green-100 text-green-800'
+                                                        : 'bg-red-100 text-red-800'
                                                         }`}
                                                 >
                                                     {product.is_active ? 'Active' : 'Inactive'}

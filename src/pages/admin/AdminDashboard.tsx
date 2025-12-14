@@ -1,16 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAdmin } from '../../contexts/AdminContext';
+import { supabase } from '../../lib/supabase';
 
 export default function AdminDashboard() {
     const { admin, logout, isLoading } = useAdmin();
     const navigate = useNavigate();
 
+    const [stats, setStats] = useState({
+        products: 0,
+        categories: 0,
+        blogs: 0,
+        orders: 0
+    });
+
     useEffect(() => {
         if (!isLoading && !admin) {
             navigate('/adminshreeshyamsilvernokha/login');
+        } else if (admin) {
+            fetchStats();
         }
     }, [admin, isLoading, navigate]);
+
+    const fetchStats = async () => {
+        try {
+            const { count: productCount } = await supabase.from('products').select('*', { count: 'exact', head: true });
+            const { count: categoryCount } = await supabase.from('categories').select('*', { count: 'exact', head: true });
+            const { count: blogCount } = await supabase.from('blog_posts').select('*', { count: 'exact', head: true });
+            // Assuming orders table exists, otherwise it will be 0
+            const { count: orderCount } = await supabase.from('orders').select('*', { count: 'exact', head: true });
+
+            setStats({
+                products: productCount || 0,
+                categories: categoryCount || 0,
+                blogs: blogCount || 0,
+                orders: orderCount || 0
+            });
+        } catch (error) {
+            console.error('Error fetching stats:', error);
+        }
+    };
 
     if (isLoading) {
         return (
@@ -67,7 +96,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-silver-600 mb-1">Total Products</p>
-                                <p className="text-3xl font-bold text-accent">0</p>
+                                <p className="text-3xl font-bold text-accent">{stats.products}</p>
                             </div>
                             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +110,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-silver-600 mb-1">Categories</p>
-                                <p className="text-3xl font-bold text-accent">0</p>
+                                <p className="text-3xl font-bold text-accent">{stats.categories}</p>
                             </div>
                             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                                 <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +124,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-silver-600 mb-1">Blog Posts</p>
-                                <p className="text-3xl font-bold text-accent">0</p>
+                                <p className="text-3xl font-bold text-accent">{stats.blogs}</p>
                             </div>
                             <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                                 <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +138,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-silver-600 mb-1">Orders</p>
-                                <p className="text-3xl font-bold text-accent">0</p>
+                                <p className="text-3xl font-bold text-accent">{stats.orders}</p>
                             </div>
                             <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
                                 <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

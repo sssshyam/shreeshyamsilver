@@ -31,7 +31,7 @@ export default {
                 }
             },
             fontFamily: {
-                serif: ['Playfair Display', 'serif'],
+                serif: ['Outfit', 'sans-serif'],
                 sans: ['Inter', 'sans-serif'],
             },
             spacing: {

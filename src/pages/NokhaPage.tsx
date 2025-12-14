@@ -2,19 +2,12 @@ export default function NokhaPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <div className="relative h-96 flex items-center">
-                <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=2000&h=800&fit=crop"
-                        alt="Nokha, Rajasthan"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
-                </div>
-                <div className="container-custom relative z-10 text-white">
-                    <h1 className="text-white mb-4">Our Home in Nokha, Rajasthan</h1>
-                    <p className="text-xl text-silver-100 max-w-2xl">
-                        Serving the community with authentic handcrafted silver since generations
+            <div className="relative h-96 flex items-center bg-[url('https://img.freepik.com/free-photo/silver-metal-texture-background_53876-88695.jpg')] bg-cover bg-center">
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="container-custom relative z-10 text-white text-center">
+                    <h1 className="text-white mb-4 drop-shadow-lg">Our Home in Nokha, Rajasthan</h1>
+                    <p className="text-xl text-silver-100 max-w-2xl mx-auto drop-shadow-md">
+                        Serving the community with authentic handcrafted silver since 2022
                     </p>
                 </div>
             </div>
@@ -22,18 +15,29 @@ export default function NokhaPage() {
             {/* About Nokha Section */}
             <section className="section-padding bg-white">
                 <div className="container-custom">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-center mb-8">Welcome to Nokha</h2>
-                        <p className="text-lg text-silver-700 leading-relaxed mb-6 text-center">
-                            Nokha, a historic town in Rajasthan, is renowned for its rich cultural heritage and
-                            traditional craftsmanship. Our family has been part of this vibrant community for over
-                            75 years, carrying forward the legacy of creating exquisite silver pieces.
-                        </p>
-                        <p className="text-lg text-silver-700 leading-relaxed text-center">
-                            Located in the heart of Nokha, our showroom welcomes you to experience the finest
-                            collection of handcrafted silver items, each piece telling a story of dedication,
-                            skill, and tradition.
-                        </p>
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <img
+                                    src="https://i.ibb.co/hJ0Z10n1/Whats-App-Image-2025-12-13-at-7-17-43-PM.jpg"
+                                    alt="Nokha Showroom"
+                                    className="rounded-lg shadow-xl w-full h-auto object-cover transform hover:scale-[1.02] transition-transform duration-300"
+                                />
+                            </div>
+                            <div>
+                                <h2 className="mb-6">Visit Our Showroom in Nokha</h2>
+                                <p className="text-lg text-silver-700 leading-relaxed mb-6">
+                                    We are proud to be located in Nokha, the heart of traditional craftsmanship. Our showroom
+                                    established in this historic town is not just a shop, but a destination where you can
+                                    experience the brilliance of authentic silver firsthand.
+                                </p>
+                                <p className="text-lg text-silver-700 leading-relaxed">
+                                    Whether you are from Nokha or visiting, we invite you to our shop to see our premium
+                                    collection of pooja items and home decor. With 3 years of established presence and
+                                    deep local roots, we are your trusted silver partner in Nokha.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -3,14 +3,23 @@ import { useState, useEffect } from 'react';
 import { Product } from '../types';
 import { getProductBySlug, getProducts } from '../services/api';
 import ProductCard from '../components/ProductCard';
+import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
+import AuthModal from '../components/auth/AuthModal';
 
 export default function ProductDetailPage() {
     const { slug } = useParams();
+    const { user } = useAuth();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState<Product | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
+
+    // Auth & UI States
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const [addingToCart, setAddingToCart] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -39,6 +48,31 @@ export default function ProductDetailPage() {
         fetchData();
     }, [slug]);
 
+    const handleAddToCart = async () => {
+        if (!product) return;
+
+        // Check if user is logged in
+        if (!user) {
+            setIsAuthModalOpen(true);
+            return;
+        }
+
+        setAddingToCart(true);
+        try {
+            const success = await addToCart(product, quantity);
+            if (success) {
+                alert("Product added to cart successfully!");
+            } else {
+                alert("Failed to add to cart. Please try again.");
+            }
+        } catch (error) {
+            console.error('Add to cart error:', error);
+            alert("An error occurred.");
+        } finally {
+            setAddingToCart(false);
+        }
+    };
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -64,12 +98,15 @@ export default function ProductDetailPage() {
     const categoryName = product.category?.name || 'Product';
     const categorySlug = product.category?.slug || 'shop';
 
-    // Build images array from database fields
-    const productImages = [];
-    if (product.image_url) productImages.push(product.image_url);
+    // Build unique images array
+    const rawImages = [];
+    if (product.image_url) rawImages.push(product.image_url);
     if (product.gallery_images && product.gallery_images.length > 0) {
-        productImages.push(...product.gallery_images);
+        rawImages.push(...product.gallery_images);
     }
+    // Remove duplicates
+    const productImages = Array.from(new Set(rawImages));
+
     // Fallback image if no images exist
     if (productImages.length === 0) {
         productImages.push('https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&h=1200&fit=crop');
@@ -77,6 +114,12 @@ export default function ProductDetailPage() {
 
     return (
         <div className="min-h-screen bg-white">
+            <AuthModal
+                isOpen={isAuthModalOpen}
+                onClose={() => setIsAuthModalOpen(false)}
+                defaultMode="login"
+            />
+
             {/* Breadcrumb */}
             <div className="border-b border-silver-200">
                 <div className="container-custom py-4">
@@ -108,7 +151,7 @@ export default function ProductDetailPage() {
                             />
                         </div>
 
-                        {/* Thumbnail Gallery */}
+                        {/* Thumbnail Gallery (Show even if 1 image to indicate selection, but usually needed for >1) */}
                         {productImages.length > 1 && (
                             <div className="grid grid-cols-4 gap-4">
                                 {productImages.map((image, index) => (
@@ -212,10 +255,11 @@ export default function ProductDetailPage() {
 
                         {/* Add to Cart */}
                         <button
-                            disabled={product.in_stock === false}
+                            onClick={handleAddToCart}
+                            disabled={product.in_stock === false || addingToCart}
                             className="btn-primary btn-lg w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Add to Cart
+                            {addingToCart ? 'Adding...' : 'Add to Cart'}
                         </button>
 
                         {/* Trust Reassurance */}
@@ -248,6 +292,26 @@ export default function ProductDetailPage() {
                                 <p className="text-silver-700 leading-relaxed">{product.description}</p>
                             </div>
                         )}
+
+                        {/* Highlights */}
+                        {product.highlights && product.highlights.length > 0 && (
+                            <div className="border-t border-silver-200 pt-6 mb-6">
+                                <h3 className="text-xl font-serif font-semibold mb-3">Highlights</h3>
+                                <ul className="list-disc list-inside space-y-2 text-silver-700">
+                                    {product.highlights.map((highlight, index) => (
+                                        <li key={index}>{highlight}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Note */}
+                        {product.note && (
+                            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-sm mb-6">
+                                <h4 className="font-semibold text-yellow-800 mb-2">Note:</h4>
+                                <p className="text-yellow-800 text-sm whitespace-pre-line">{product.note}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -268,10 +332,10 @@ export default function ProductDetailPage() {
                         </div>
                     )}
 
-                    {/* Care Instructions */}
+                    {/* Silver Care */}
                     {product.care_instructions && product.care_instructions.length > 0 && (
                         <div>
-                            <h3 className="text-2xl font-serif font-semibold mb-6">Care Instructions</h3>
+                            <h3 className="text-2xl font-serif font-semibold mb-6">Silver Care</h3>
                             <ul className="space-y-3">
                                 {product.care_instructions.map((instruction, index) => (
                                     <li key={index} className="flex items-start gap-3">
@@ -327,7 +391,8 @@ export default function ProductDetailPage() {
             {/* Sticky Mobile CTA */}
             <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-silver-200 p-4 z-40">
                 <button
-                    disabled={product.in_stock === false}
+                    onClick={handleAddToCart}
+                    disabled={product.in_stock === false || addingToCart}
                     className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     Add to Cart - ₹{product.price.toLocaleString('en-IN')}

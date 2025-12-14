@@ -40,7 +40,7 @@ export default function Header() {
                             <img
                                 src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
                                 alt="Shree Shyam Silver"
-                                className="h-12 md:h-16 w-auto"
+                                className="h-16 md:h-20 w-auto"
                             />
                         </Link>
 
@@ -52,11 +52,14 @@ export default function Header() {
                             <Link to="/shop" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Shop
                             </Link>
+                            <Link to="/category" className="text-silver-700 hover:text-accent transition-colors font-medium">
+                                Categories
+                            </Link>
                             <Link to="/about" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 About
                             </Link>
                             <Link to="/nokha" className="text-silver-700 hover:text-accent transition-colors font-medium">
-                                Visit Nokha
+                                Nokha Showroom
                             </Link>
                             <Link to="/blog" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Blog
@@ -184,7 +187,7 @@ export default function Header() {
                                 className="text-silver-700 hover:text-accent transition-colors font-medium py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                Visit Nokha
+                                Nokha Showroom
                             </Link>
                             <Link
                                 to="/blog"

@@ -30,6 +30,8 @@ export interface Product {
     }[];
     care_instructions?: string[];
     use_case?: 'Gift' | 'Pooja' | 'Decor' | 'All';
+    highlights?: string[];
+    note?: string;
 }
 
 export interface Category {
@@ -51,6 +53,7 @@ export interface BlogPost {
     image?: string;
     author?: string;
     date?: string;
+    is_published?: boolean;
     read_time?: string;
     created_at?: string;
     updated_at?: string;

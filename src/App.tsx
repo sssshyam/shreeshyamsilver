@@ -7,6 +7,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 // Public Pages
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
+import CategoriesPage from './pages/CategoriesPage';
 import CategoryPage from './pages/CategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import AboutPage from './pages/AboutPage';
@@ -18,6 +19,9 @@ import AccountPage from './pages/AccountPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import NokhaPage from './pages/NokhaPage';
+import ReturnPolicyPage from './pages/ReturnPolicyPage';
+import ShippingPolicyPage from './pages/ShippingPolicyPage';
+import WhyChooseUsPage from './pages/WhyChooseUsPage';
 
 // Admin Pages
 import AdminLoginPage from './pages/admin/AdminLoginPage';
@@ -25,10 +29,18 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
 import AdminProductFormPage from './pages/admin/AdminProductFormPage';
 import AdminCategoriesPage from './pages/admin/AdminCategoriesPage';
+import AdminCategoryFormPage from './pages/admin/AdminCategoryFormPage';
+import AdminBlogPage from './pages/admin/AdminBlogPage';
+import AdminBlogPostFormPage from './pages/admin/AdminBlogPostFormPage';
+
+import ScrollToTop from './components/ScrollToTop';
+import SEO from './components/SEO';
 
 function App() {
     return (
         <Router>
+            <ScrollToTop />
+            <SEO />
             <AdminProvider>
                 <Routes>
                     {/* Admin Routes - No Header/Footer */}
@@ -38,6 +50,11 @@ function App() {
                     <Route path="/adminshreeshyamsilvernokha/products/new" element={<AdminProductFormPage />} />
                     <Route path="/adminshreeshyamsilvernokha/products/edit/:id" element={<AdminProductFormPage />} />
                     <Route path="/adminshreeshyamsilvernokha/categories" element={<AdminCategoriesPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/categories/new" element={<AdminCategoryFormPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/categories/edit/:id" element={<AdminCategoryFormPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/blogs" element={<AdminBlogPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/blogs/new" element={<AdminBlogPostFormPage />} />
+                    <Route path="/adminshreeshyamsilvernokha/blogs/edit/:id" element={<AdminBlogPostFormPage />} />
 
                     {/* Public Routes - With Header/Footer */}
                     <Route path="/*" element={
@@ -47,6 +64,7 @@ function App() {
                                 <Routes>
                                     <Route path="/" element={<HomePage />} />
                                     <Route path="/shop" element={<ShopPage />} />
+                                    <Route path="/category" element={<CategoriesPage />} />
                                     <Route path="/shop/category/:slug" element={<CategoryPage />} />
                                     <Route path="/product/:slug" element={<ProductDetailPage />} />
                                     <Route path="/about" element={<AboutPage />} />
@@ -56,6 +74,9 @@ function App() {
                                     <Route path="/cart" element={<CartPage />} />
                                     <Route path="/checkout" element={<CheckoutPage />} />
                                     <Route path="/account" element={<AccountPage />} />
+                                    <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
+                                    <Route path="/return-policy" element={<ReturnPolicyPage />} />
+                                    <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
                                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                                     <Route path="/terms" element={<TermsPage />} />
                                 </Routes>

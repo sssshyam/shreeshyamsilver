@@ -4,19 +4,12 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero */}
-            <div className="relative h-96 flex items-center">
-                <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=2000&h=800&fit=crop"
-                        alt="Our Heritage"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/50" />
-                </div>
-                <div className="container-custom relative z-10 text-white">
-                    <h1 className="text-white mb-4">Our Heritage</h1>
-                    <p className="text-xl text-silver-100 max-w-2xl">
-                        Three generations of master craftsmen, one timeless tradition
+            <div className="relative h-96 flex items-center bg-[url('https://img.freepik.com/free-photo/silver-metal-texture-background_53876-88695.jpg')] bg-cover bg-center">
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="container-custom relative z-10 text-white text-center">
+                    <h1 className="text-white mb-4 drop-shadow-lg">Our Heritage</h1>
+                    <p className="text-xl text-silver-100 max-w-2xl mx-auto drop-shadow-md">
+                        A timeless tradition of elegance and purity
                     </p>
                 </div>
             </div>
@@ -24,27 +17,31 @@ export default function AboutPage() {
             {/* Story */}
             <section className="section-padding">
                 <div className="container-custom">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="mb-8 text-center">A Legacy of Excellence Since 1950</h2>
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <img
+                                    src="https://i.ibb.co/Qvx3vBt5/Silver-Plated-peacock-deepak-candle-12.png"
+                                    alt="Silver Plated Peacock Deepak"
+                                    className="w-full h-auto rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-300 object-cover"
+                                />
+                            </div>
+                            <div>
+                                <h2 className="mb-6">A Legacy of Excellence Since 2022</h2>
+                                <div className="space-y-6 text-lg text-silver-700 leading-relaxed">
+                                    <p>
+                                        ShreeShyamSilver is a premium manufacturer of silver-plated home décor and pooja items, proudly based in Nokha and Bikaner, Rajasthan. Established in 2022, our brand is building on a strong foundation of quality and trust.
+                                    </p>
 
-                        <div className="space-y-6 text-lg text-silver-700 leading-relaxed">
-                            <p>
-                                Our journey began in 1950 when our grandfather, a master silversmith, opened a small workshop
-                                in the heart of Mumbai. With nothing but his skills, dedication, and an unwavering commitment
-                                to quality, he laid the foundation of what would become a trusted name in handcrafted silver.
-                            </p>
+                                    <p>
+                                        With deep expertise in traditional silver work and a passion for quality craftsmanship, we have transformed ShreeShyamSilver into a trusted brand that blends heritage with modern elegance.
+                                    </p>
 
-                            <p>
-                                For over 75 years, we have been creating exquisite silver pieces that blend traditional
-                                artistry with timeless elegance. Each generation has added its own expertise while preserving
-                                the core values that define us: purity, authenticity, and craftsmanship.
-                            </p>
-
-                            <p>
-                                Today, we are proud to serve thousands of families across India, creating pieces that become
-                                part of their most cherished moments—from daily prayers to grand celebrations, from intimate
-                                family gatherings to milestone occasions.
-                            </p>
+                                    <p>
+                                        Every product is handcrafted by skilled artisans using time-honoured techniques, supported by strict quality checks to ensure long-lasting shine and durability. From pooja essentials to home décor accents, our pieces reflect our core values—authentic craftsmanship, consistent quality, and timeless beauty.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +86,7 @@ export default function AboutPage() {
                             </div>
                             <h3 className="mb-3">Trust</h3>
                             <p className="text-silver-600">
-                                75+ years of serving families with integrity, transparency, and dedication
+                                3 years of serving families with integrity, transparency, and dedication
                             </p>
                         </div>
                     </div>
@@ -162,9 +159,9 @@ export default function AboutPage() {
                 <div className="container-custom text-center">
                     <h2 className="text-white mb-6">Experience Our Legacy</h2>
                     <p className="text-xl text-silver-100 mb-8 max-w-2xl mx-auto">
-                        Discover handcrafted silver pieces that carry 75 years of tradition and trust
+                        Discover handcrafted silver pieces that carry 3 years of trust and purity
                     </p>
-                    <Link to="/shop" className="btn-secondary border-white text-white hover:bg-white hover:text-accent btn-lg">
+                    <Link to="/shop" className="btn bg-white text-silver-900 hover:bg-silver-100 border-none btn-lg">
                         Explore Collection
                     </Link>
                 </div>

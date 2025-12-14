@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Product, Category } from '../types';
 import { getCategoryBySlug, getProductsByCategory } from '../services/api';
+import { categorySEOContent } from '../data/categoryContent';
 
 export default function CategoryPage() {
     const { slug } = useParams();
@@ -33,7 +34,7 @@ export default function CategoryPage() {
                 }
 
                 setCategory(categoryData);
-                setProducts(productsData);
+                setProducts(productsData || []);
             } catch (error) {
                 console.error('❌ Error fetching category data:', error);
                 setError('Failed to load category data');
@@ -76,18 +77,11 @@ export default function CategoryPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Category Header */}
-            <div className="relative h-80 flex items-center">
-                <div className="absolute inset-0">
-                    <img
-                        src={category.image}
-                        alt={category.name}
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/50" />
-                </div>
-                <div className="container-custom relative z-10 text-white">
-                    <h1 className="text-white mb-4">{category.name}</h1>
-                    <p className="text-xl text-silver-100">{category.description}</p>
+            <div className="bg-silver-50 border-b border-silver-200 py-16">
+                <div className="container-custom text-center">
+                    <h1 className="text-silver-900 mb-4">{category.name}</h1>
+                    <p className="text-xl text-silver-600 max-w-2xl mx-auto">{category.description}</p>
+                    <div className="w-24 h-1 bg-accent mx-auto mt-8" />
                 </div>
             </div>
 
@@ -120,6 +114,19 @@ export default function CategoryPage() {
                     </div>
                 )}
             </div>
+
+            {/* SEO Content Section */}
+            {slug && categorySEOContent[slug] && (
+                <div className="bg-silver-50 py-16 border-t border-silver-200 mt-12">
+                    <div className="container-custom max-w-4xl">
+                        <h2 className="mb-8 text-center">{categorySEOContent[slug].title}</h2>
+                        <div
+                            className="prose prose-silver max-w-none"
+                            dangerouslySetInnerHTML={{ __html: categorySEOContent[slug].content }}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
