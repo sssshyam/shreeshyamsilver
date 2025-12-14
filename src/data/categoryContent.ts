@@ -37,7 +37,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    Transform your home into a sanctuary of peace and beauty with our exclusive collection of **Pooja & Home Decor** items. At Shree Shyam Silver, we understand deep spiritual significance silver holds in Indian culture. It is not just a metal but a symbol of purity (Shuddhata) and prosperity. Our collection is meticulously designed to cater to your spiritual needs while enhancing the aesthetic appeal of your living spaces.
+                    Transform your home into a sanctuary of peace and beauty with our exclusive collection of Pooja & Home Decor items. At Shree Shyam Silver, we understand deep spiritual significance silver holds in Indian culture. It is not just a metal but a symbol of purity (Shuddhata) and prosperity. Our collection is meticulously designed to cater to your spiritual needs while enhancing the aesthetic appeal of your living spaces.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">The Spiritual Significance of Silver</h3>
@@ -67,12 +67,12 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    Memories are the treasures of life, and what better way to preserve them than in a frame that is as precious as the moment itself? Our **Silver Photo Frames** collection is designed to frame your most loved photographs in timeless elegance. From vintage intricate carvings to sleek modern borders, our frames are perfect for showcasing weddings, family portraits, and divine images.
+                    Memories are the treasures of life, and what better way to preserve them than in a frame that is as precious as the moment itself? Our Silver Photo Frames collection is designed to frame your most loved photographs in timeless elegance. From vintage intricate carvings to sleek modern borders, our frames are perfect for showcasing weddings, family portraits, and divine images.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">A Variety of Designs</h3>
                 <p>
-                    We offer a diverse range of styles to suit every taste. Our **Traditional Nakshi** frames feature deep hand-carved floral patterns that reflect the grandeur of Rajasthani artistry. For those who prefer a minimalist look, our **Plain Glossy** and **Beaded Edge** frames offer a contemporary sophistication. We also have specialized frames for deity photos, often used in home temples or as car dashboard accessories, ensuring that divine blessings are always with you.
+                    We offer a diverse range of styles to suit every taste. Our Traditional Nakshi frames feature deep hand-carved floral patterns that reflect the grandeur of Rajasthani artistry. For those who prefer a minimalist look, our Plain Glossy and Beaded Edge frames offer a contemporary sophistication. We also have specialized frames for deity photos, often used in home temples or as car dashboard accessories, ensuring that divine blessings are always with you.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">The Ideal Corporate and Personal Gift</h3>
@@ -95,7 +95,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    In Indian culture, serving guests is considered a divine duty ('Atithi Devo Bhava'), and offering dry fruits and sweets is a gesture of warmth and hospitality. Our **Dry Fruit Box** collection takes this tradition to a level of royal luxury. These are not just containers; they are masterpieces of craftsmanship that serve as a symbol of your status and refined taste.
+                    In Indian culture, serving guests is considered a divine duty ('Atithi Devo Bhava'), and offering dry fruits and sweets is a gesture of warmth and hospitality. Our Dry Fruit Box collection takes this tradition to a level of royal luxury. These are not just containers; they are masterpieces of craftsmanship that serve as a symbol of your status and refined taste.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Exquisite Designs & Varieties</h3>
@@ -105,7 +105,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">The Ultimate Wedding & Festival Gift</h3>
                 <p>
-                    A Silver Dry Fruit Box is the quintessential gift for Indian weddings and festivals like Diwali. It represents abundance and sweetness. Many of our customers choose our **2-Bowl and Tray Sets** or **Fancy Velvet Boxes** as luxury return gifts for wedding guests. We also customize bulk orders for corporate Diwali gifting, helping businesses leave a lasting impression of elegance and gratitude on their clients and employees.
+                    A Silver Dry Fruit Box is the quintessential gift for Indian weddings and festivals like Diwali. It represents abundance and sweetness. Many of our customers choose our 2-Bowl and Tray Sets or Fancy Velvet Boxes as luxury return gifts for wedding guests. We also customize bulk orders for corporate Diwali gifting, helping businesses leave a lasting impression of elegance and gratitude on their clients and employees.
                 </p>
                 <p>
                     These boxes are versatile and can also be used to store jewelry or other trinkets, making them a multi-functional addition to any household. The intricate 'Jali' work and embossed patterns on the lids are a testament to the skill of our artisans in Nokha.
@@ -128,12 +128,12 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    Light is the essence of life and celebration. Our **Silver Candle & Deepak Stands** category is dedicated to bringing that light into your home with unmatched grace. From traditional oil lamps (Deepaks) used in daily prayer to modern candle stands that set the mood for a dinner party, our collection covers the entire spectrum of illumination.
+                    Light is the essence of life and celebration. Our Silver Candle & Deepak Stands category is dedicated to bringing that light into your home with unmatched grace. From traditional oil lamps (Deepaks) used in daily prayer to modern candle stands that set the mood for a dinner party, our collection covers the entire spectrum of illumination.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Traditional Deepaks for Worship</h3>
                 <p>
-                   The 'Diya' or Deepak holds immense significance in Hindu rituals, representing the victory of light over darkness. We offer a wide variety of silver deepaks, including the **Five-Face (Panchmukhi) Deepak**, **Peacock Design Deepak**, and the classic **Samay**. These are essential for your home mandir. Lighting a silver deepak during your morning and evening prayers is believed to purify the environment and invite divine blessings. Our heavy-base designs ensure safety and stability, minimizing the risk of oil spills.
+                   The 'Diya' or Deepak holds immense significance in Hindu rituals, representing the victory of light over darkness. We offer a wide variety of silver deepaks, including the Five-Face (Panchmukhi) Deepak, Peacock Design Deepak, and the classic Samay. These are essential for your home mandir. Lighting a silver deepak during your morning and evening prayers is believed to purify the environment and invite divine blessings. Our heavy-base designs ensure safety and stability, minimizing the risk of oil spills.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Modern Candle Stands for Decor</h3>
@@ -156,12 +156,12 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    Serve your guests with the elegance of royalty using our **Decorative Bowls** collection. In the world of fine dining and home decor, a silver bowl is not just a vessel; it is a statement piece. Our collection features an array of bowls crafted for various uses, from serving dry fruits and sweets to floating flower arrangements.
+                    Serve your guests with the elegance of royalty using our Decorative Bowls collection. In the world of fine dining and home decor, a silver bowl is not just a vessel; it is a statement piece. Our collection features an array of bowls crafted for various uses, from serving dry fruits and sweets to floating flower arrangements.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Versatile and Beautiful</h3>
                 <p>
-                   Our catalog includes **Fruit Bowls**, **Roli Chawal Bowls** (for Tilak), **Ice Cream Bowls**, and large **Centerpiece Bowls**. One of our most popular designs is the **Duck Bowl Set**, which combines a playful shape with a luxurious finish. We also offer **Resin-Silver infusion bowls**, like the 'Leaf Cut Bowl', which brings a modern twist to traditional silverware. These bowls can be used to serve snacks during gatherings or placed empty on a shelf as a piece of art.
+                   Our catalog includes Fruit Bowls, Roli Chawal Bowls (for Tilak), Ice Cream Bowls, and large Centerpiece Bowls. One of our most popular designs is the Duck Bowl Set, which combines a playful shape with a luxurious finish. We also offer Resin-Silver infusion bowls, like the 'Leaf Cut Bowl', which brings a modern twist to traditional silverware. These bowls can be used to serve snacks during gatherings or placed empty on a shelf as a piece of art.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">The Tradition of Silverware</h3>
@@ -184,7 +184,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
         content: `
             <div class="space-y-6 text-silver-700 leading-relaxed">
                 <p>
-                    Step into the modern era of home styling with our **Resin Decor Items**. This category represents a fusion of high-quality resin crafting with supreme silver plating, resulting in durable, lightweight, and incredibly detailed artifacts. This innovative combination allows for shapes and colors that traditional silver crafting cannot achieve alone.
+                    Step into the modern era of home styling with our Resin Decor Items. This category represents a fusion of high-quality resin crafting with supreme silver plating, resulting in durable, lightweight, and incredibly detailed artifacts. This innovative combination allows for shapes and colors that traditional silver crafting cannot achieve alone.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">What is Resin Silver Decor?</h3>
@@ -194,7 +194,7 @@ export const categorySEOContent: Record<string, { title: string; content: string
 
                 <h3 class="text-xl font-semibold text-silver-900">Our Exclusive Collection</h3>
                 <p>
-                   Our Resin collection features vibrant items like the **Resin Rose Bowl**, **Peacock Statues**, and **Abstract Human Figurines**. The **Resin Cow and Calf (Kamdhenu)** is a bestseller, often bought for its Vastu benefits. These items often feature touches of gold or colored enamel work (Meenakari), adding a pop of color that complements the silver base beautifully.
+                   Our Resin collection features vibrant items like the Resin Rose Bowl, Peacock Statues, and Abstract Human Figurines. The Resin Cow and Calf (Kamdhenu) is a bestseller, often bought for its Vastu benefits. These items often feature touches of gold or colored enamel work (Meenakari), adding a pop of color that complements the silver base beautifully.
                 </p>
 
                 <h3 class="text-xl font-semibold text-silver-900">Durability and Maintenance</h3>
