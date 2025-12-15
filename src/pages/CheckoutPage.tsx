@@ -29,14 +29,6 @@ export default function CheckoutPage() {
 
     const [isProcessing, setIsProcessing] = useState(false);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
     const loadRazorpayScript = () => {
         return new Promise((resolve) => {
             const script = document.createElement('script');
@@ -45,6 +37,37 @@ export default function CheckoutPage() {
             script.onerror = () => resolve(false);
             document.body.appendChild(script);
         });
+    };
+
+    const handlePincodeLookup = async (pincode: string) => {
+        if (pincode.length === 6) {
+            try {
+                const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+                const data = await response.json();
+                if (data[0].Status === 'Success') {
+                    const { District, State } = data[0].PostOffice[0];
+                    setFormData(prev => ({
+                        ...prev,
+                        city: District,
+                        state: State
+                    }));
+                }
+            } catch (error) {
+                console.error("Failed to fetch address from pincode");
+            }
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+        if (name === 'pincode' && value.length === 6) {
+            handlePincodeLookup(value);
+        }
     };
 
     const handlePayment = async (e: React.FormEvent) => {

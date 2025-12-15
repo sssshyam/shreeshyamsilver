@@ -143,28 +143,58 @@ export default function ProductDetailPage() {
                     {/* Left: Images */}
                     <div>
                         {/* Main Image */}
-                        <div className="mb-4 border border-silver-200 rounded-sm overflow-hidden group">
+                        <div className="mb-4 border border-silver-200 rounded-sm overflow-hidden relative group bg-white h-[400px] md:h-[500px] flex items-center justify-center">
                             <img
                                 src={productImages[selectedImage]}
                                 alt={product.name}
-                                className="w-full aspect-square object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-full object-contain"
                             />
+
+                            {/* Navigation Arrows */}
+                            {productImages.length > 1 && (
+                                <>
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSelectedImage((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
+                                        }}
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/90 hover:bg-white text-silver-800 rounded-full shadow-md backdrop-blur-sm transition-all hover:scale-110 z-10 border border-silver-100 opacity-0 group-hover:opacity-100"
+                                        aria-label="Previous Image"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSelectedImage((prev) => (prev === productImages.length - 1 ? 0 : prev + 1));
+                                        }}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/90 hover:bg-white text-silver-800 rounded-full shadow-md backdrop-blur-sm transition-all hover:scale-110 z-10 border border-silver-100 opacity-0 group-hover:opacity-100"
+                                        aria-label="Next Image"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </>
+                            )}
                         </div>
 
-                        {/* Thumbnail Gallery (Show even if 1 image to indicate selection, but usually needed for >1) */}
+                        {/* Thumbnail Gallery */}
                         {productImages.length > 1 && (
                             <div className="grid grid-cols-4 gap-4">
                                 {productImages.map((image, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setSelectedImage(index)}
-                                        className={`border-2 rounded-sm overflow-hidden transition-all ${selectedImage === index ? 'border-accent' : 'border-silver-200 hover:border-silver-300'
+                                        className={`border-2 rounded-sm overflow-hidden transition-all bg-white relative ${selectedImage === index ? 'border-accent' : 'border-silver-200 hover:border-silver-300'
                                             }`}
                                     >
                                         <img
                                             src={image}
                                             alt={`${product.name} ${index + 1}`}
-                                            className="w-full aspect-square object-cover"
+                                            className="w-full aspect-square object-contain"
                                         />
                                     </button>
                                 ))}
