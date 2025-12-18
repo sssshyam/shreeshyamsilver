@@ -28,11 +28,13 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {/* Brand Info */}
                     <div>
-                        <img
-                            src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
-                            alt="Shree Shyam Silver"
-                            className="h-12 mb-4 w-auto"
-                        />
+                        <div className="inline-block bg-white rounded-lg p-2 mb-4 shadow-lg">
+                            <img
+                                src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
+                                alt="Shree Shyam Silver"
+                                className="h-12 w-auto object-contain"
+                            />
+                        </div>
                         <p className="text-silver-200 mb-6 leading-relaxed">
                             Crafting exquisite silver pieces in Nokha, Rajasthan.
                             Founded by Ram Gopal Chandak with 26 years of experience.

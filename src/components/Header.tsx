@@ -43,12 +43,14 @@ export default function Header() {
                 <div className="py-4 md:py-6">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <Link to="/" className="flex items-center">
-                            <img
-                                src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
-                                alt="Shree Shyam Silver"
-                                className="h-16 md:h-20 w-auto"
-                            />
+                        <Link to="/" className="flex items-center group">
+                            <div className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
+                                <img
+                                    src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
+                                    alt="Shree Shyam Silver"
+                                    className="h-14 md:h-16 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
                         </Link>
 
                         {/* Desktop Navigation */}
@@ -56,6 +58,35 @@ export default function Header() {
                             <Link to="/" className="text-silver-700 hover:text-accent transition-colors font-medium">
                                 Home
                             </Link>
+
+                            {/* Shop By Price Dropdown */}
+                            <div className="relative group">
+                                <button className="text-silver-700 hover:text-accent transition-colors font-medium flex items-center gap-1">
+                                    Shop By Price
+                                    <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 w-56">
+                                    <div className="bg-white shadow-xl rounded-lg border border-silver-100 overflow-hidden text-left">
+                                        {[500, 1000, 2000, 5000, 10000, 20000].map((price) => (
+                                            <Link
+                                                key={price}
+                                                to={`/shop?maxPrice=${price}`}
+                                                className="block px-4 py-3 text-sm text-silver-700 hover:bg-silver-50 hover:text-accent border-b border-silver-50"
+                                            >
+                                                Items Under ₹{price}
+                                            </Link>
+                                        ))}
+                                        <Link
+                                            to="/shop?minPrice=20000"
+                                            className="block px-4 py-3 text-sm text-silver-700 hover:bg-silver-50 hover:text-accent border-b border-silver-50"
+                                        >
+                                            Items Above ₹20,000
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
 
                             {/* Shop Dropdown */}
                             <div className="relative group">
@@ -143,6 +174,13 @@ export default function Header() {
                                                     className="block px-4 py-2 text-sm text-silver-700 hover:bg-silver-50"
                                                 >
                                                     My Account
+                                                </Link>
+                                                <Link
+                                                    to="/wishlist"
+                                                    onClick={() => setShowUserMenu(false)}
+                                                    className="block px-4 py-2 text-sm text-silver-700 hover:bg-silver-50"
+                                                >
+                                                    My Wishlist
                                                 </Link>
                                                 <Link
                                                     to="/orders"

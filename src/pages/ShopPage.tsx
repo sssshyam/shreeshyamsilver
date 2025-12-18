@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { Product, Category } from '../types';
 import { getProducts, getCategories } from '../services/api';
@@ -7,15 +8,28 @@ type SortOption = 'popular' | 'price-low' | 'price-high' | 'newest';
 type UseCaseFilter = 'All' | 'Gift' | 'Pooja' | 'Decor';
 
 export default function ShopPage() {
+    const [searchParams] = useSearchParams();
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [selectedCategory, setSelectedCategory] = useState<number | 'all'>('all');
     const [selectedUseCase, setSelectedUseCase] = useState<UseCaseFilter>('All');
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 300000]);
+
+    // Initialize price range from URL params
+    const initialMin = Number(searchParams.get('minPrice')) || 0;
+    const initialMax = Number(searchParams.get('maxPrice')) || 300000;
+    const [priceRange, setPriceRange] = useState<[number, number]>([initialMin, initialMax]);
+
     const [sortBy, setSortBy] = useState<SortOption>('popular');
     const [showFilters, setShowFilters] = useState(false);
+
+    // Update state if URL changes
+    useEffect(() => {
+        const min = Number(searchParams.get('minPrice')) || 0;
+        const max = Number(searchParams.get('maxPrice')) || 300000;
+        setPriceRange([min, max]);
+    }, [searchParams]);
 
     useEffect(() => {
         async function fetchData() {
@@ -139,7 +153,7 @@ export default function ShopPage() {
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" className="w-4 h-4 text-accent" defaultChecked />
-                        <span className="text-silver-700">92.5% Sterling Silver</span>
+
                     </label>
                 </div>
             </div>

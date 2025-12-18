@@ -51,25 +51,33 @@ export default function CategoriesPage() {
             {/* Categories Grid */}
             <div className="container-custom py-16">
                 {categories.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {categories.map((category) => (
                             <Link
                                 key={category.id}
                                 to={`/shop/category/${category.slug}`}
-                                className="group block bg-white border border-silver-200 rounded-sm hover:shadow-lg transition-all duration-300 hover:border-accent"
+                                className="card-hover group block bg-white border border-silver-200 overflow-hidden"
                             >
-                                <div className="p-8 text-center h-full flex flex-col justify-center items-center">
-                                    <h3 className="text-xl font-serif text-silver-900 mb-2 group-hover:text-accent transition-colors">
-                                        {category.name}
-                                    </h3>
-                                    {category.description && (
-                                        <p className="text-silver-600 text-sm line-clamp-2 max-w-xs mx-auto">
-                                            {category.description}
-                                        </p>
-                                    )}
-                                    <span className="mt-4 text-xs font-medium uppercase tracking-wider text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                                        View Products
-                                    </span>
+                                {/* Category Image */}
+                                <div className="relative h-72 overflow-hidden">
+                                    <img
+                                        src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&h=800&fit=crop'}
+                                        alt={category.name}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                        <h3 className="text-xl md:text-2xl font-serif text-white mb-2">
+                                            {category.name}
+                                        </h3>
+                                        {category.description && (
+                                            <p className="text-white/80 text-sm line-clamp-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                                                {category.description}
+                                            </p>
+                                        )}
+                                        <div className="w-12 h-0.5 bg-accent mx-auto group-hover:w-20 transition-all duration-300" />
+                                    </div>
                                 </div>
                             </Link>
                         ))}

@@ -18,6 +18,7 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 
 import ProfilePage from './pages/ProfilePage';
+import WishlistPage from './pages/WishlistPage';
 import MyOrdersPage from './pages/MyOrdersPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
@@ -83,6 +84,7 @@ function App() {
                                     <Route path="/cart" element={<CartPage />} />
                                     <Route path="/checkout" element={<CheckoutPage />} />
                                     <Route path="/account" element={<ProfilePage />} />
+                                    <Route path="/wishlist" element={<WishlistPage />} />
                                     <Route path="/orders" element={<MyOrdersPage />} />
                                     <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
                                     <Route path="/return-policy" element={<ReturnPolicyPage />} />

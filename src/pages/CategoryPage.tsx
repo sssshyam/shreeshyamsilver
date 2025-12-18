@@ -77,10 +77,20 @@ export default function CategoryPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Category Header */}
-            <div className="bg-silver-50 border-b border-silver-200 py-16">
-                <div className="container-custom text-center">
-                    <h1 className="text-silver-900 mb-4">{category.name}</h1>
-                    <p className="text-xl text-silver-600 max-w-2xl mx-auto">{category.description}</p>
+            <div className="relative bg-silver-900 py-24 sm:py-32 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1920&q=80'}
+                        alt={category.name}
+                        className="w-full h-full object-cover opacity-50"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-silver-900/90 via-silver-900/40 to-silver-900/30" />
+                </div>
+
+                <div className="container-custom relative z-10 text-center text-white">
+                    <h1 className="text-4xl md:text-5xl font-serif mb-6">{category.name}</h1>
+                    <p className="text-xl text-silver-100 max-w-2xl mx-auto leading-relaxed">{category.description}</p>
                     <div className="w-24 h-1 bg-accent mx-auto mt-8" />
                 </div>
             </div>

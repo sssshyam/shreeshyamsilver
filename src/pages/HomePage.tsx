@@ -144,19 +144,26 @@ export default function HomePage() {
                                 <Link
                                     key={category.id}
                                     to={`/shop/category/${category.slug}`}
-                                    className="card-hover group block bg-silver-50 border border-silver-200 p-8 text-center transition-all duration-300 hover:border-accent/30 hover:bg-white"
+                                    className="card-hover group block bg-white border border-silver-200 overflow-hidden"
                                 >
-                                    <div className="flex flex-col items-center justify-center h-full">
-                                        <div className="w-16 h-1 bg-accent/20 mb-6 group-hover:w-24 transition-all duration-300 mx-auto" />
-                                        <h3 className="text-xl md:text-2xl font-serif text-silver-900 mb-3 group-hover:text-accent transition-colors">
-                                            {category.name}
-                                        </h3>
-                                        {category.description && (
-                                            <p className="text-silver-600 text-sm line-clamp-2">
-                                                {category.description}
-                                            </p>
-                                        )}
+                                    {/* Category Image */}
+                                    <div className="relative h-64 overflow-hidden">
+                                        <img
+                                            src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&h=800&fit=crop'}
+                                            alt={category.name}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+
+                                        <div className="absolute bottom-0 left-0 right-0 p-6 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                            <h3 className="text-xl md:text-2xl font-serif text-white mb-2">
+                                                {category.name}
+                                            </h3>
+                                            <div className="w-12 h-0.5 bg-accent mx-auto group-hover:w-20 transition-all duration-300" />
+                                        </div>
                                     </div>
+
+                                    {/* Description (Optional, maybe hide if image is dominant, or keep below? Let's hide to make it cleaner image tiles) */}
                                 </Link>
                             ))}
                         </div>
@@ -177,10 +184,43 @@ export default function HomePage() {
                     </div>
 
                     {featuredProducts.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {featuredProducts.slice(0, 4).map((product) => (
-                                <ProductCard key={product.id} product={product} />
-                            ))}
+                        <div className="relative group/slider">
+                            {/* Scroll Buttons */}
+                            <button
+                                onClick={() => {
+                                    const slider = document.getElementById('best-sellers-slider');
+                                    if (slider) slider.scrollBy({ left: -300, behavior: 'smooth' });
+                                }}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-silver-600 hover:text-accent opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    const slider = document.getElementById('best-sellers-slider');
+                                    if (slider) slider.scrollBy({ left: 300, behavior: 'smooth' });
+                                }}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-silver-600 hover:text-accent opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            {/* Slider Container */}
+                            <div
+                                id="best-sellers-slider"
+                                className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:px-0"
+                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            >
+                                {featuredProducts.map((product) => (
+                                    <div key={product.id} className="min-w-[280px] md:min-w-[320px] snap-center">
+                                        <ProductCard product={product} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ) : (
                         <p className="text-center text-silver-600">No best sellers available</p>

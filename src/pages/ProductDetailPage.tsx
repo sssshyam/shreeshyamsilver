@@ -6,6 +6,8 @@ import ProductCard from '../components/ProductCard';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import AuthModal from '../components/auth/AuthModal';
+import ImageModal from '../components/ui/ImageModal';
+import WishlistButton from '../components/WishlistButton';
 
 export default function ProductDetailPage() {
     const { slug } = useParams();
@@ -16,6 +18,7 @@ export default function ProductDetailPage() {
     const [loading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
+    const [showImageModal, setShowImageModal] = useState(false);
 
     // Auth & UI States
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -120,6 +123,13 @@ export default function ProductDetailPage() {
                 defaultMode="login"
             />
 
+            <ImageModal
+                isOpen={showImageModal}
+                onClose={() => setShowImageModal(false)}
+                images={productImages}
+                initialIndex={selectedImage}
+            />
+
             {/* Breadcrumb */}
             <div className="border-b border-silver-200">
                 <div className="container-custom py-4">
@@ -143,14 +153,27 @@ export default function ProductDetailPage() {
                     {/* Left: Images */}
                     <div>
                         {/* Main Image */}
-                        <div className="mb-4 border border-silver-200 rounded-sm overflow-hidden relative group bg-white h-[400px] md:h-[500px] flex items-center justify-center">
+                        <div
+                            className="mb-4 border border-silver-200 rounded-sm overflow-hidden relative group bg-white h-[400px] md:h-[500px] flex items-center justify-center cursor-zoom-in"
+                            onClick={() => setShowImageModal(true)}
+                        >
                             <img
                                 src={productImages[selectedImage]}
                                 alt={product.name}
-                                className="w-full h-full object-contain"
+                                className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
                             />
 
-                            {/* Navigation Arrows */}
+                            {/* Wishlist Button Overlay */}
+                            <div className="absolute top-4 right-4 z-20">
+                                <WishlistButton productId={product.id} className="w-10 h-10 bg-white rounded-full shadow-lg hover:scale-110" />
+                            </div>
+
+                            {/* View Fullscreen Hint */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                Click to enlarge
+                            </div>
+
+                            {/* Navigation Arrows (Only for preview, also available in modal) */}
                             {productImages.length > 1 && (
                                 <>
                                     <button

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Product } from '../types';
 import AddToCartButton from './cart/AddToCartButton';
+import WishlistButton from './WishlistButton';
 
 interface ProductCardProps {
     product: Product;
@@ -27,6 +28,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
 
+                    {/* Wishlist Button */}
+                    <div className="absolute top-4 right-4 z-10 transition-transform duration-300 hover:scale-110">
+                        <WishlistButton productId={product.id} className="w-8 h-8 bg-white rounded-full shadow-md" />
+                    </div>
+
                     {/* Featured Badge */}
                     {product.is_featured && (
                         <div className="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-xs font-medium rounded-full">
@@ -36,7 +42,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                     {/* Hallmark Badge (if exists) */}
                     {product.hallmark && (
-                        <div className="absolute top-4 right-4 badge-hallmark">
+                        <div className="absolute bottom-4 left-4 badge-hallmark">
                             BIS Hallmark
                         </div>
                     )}
