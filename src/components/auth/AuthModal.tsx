@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface AuthModalProps {
@@ -56,9 +57,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
         setError('');
     };
 
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg max-w-md w-full p-8 relative">
+    return createPortal(
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center p-4 animate-fade-in-up">
+            <div className="bg-white rounded-lg max-w-md w-full p-8 relative shadow-2xl">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
@@ -172,6 +173,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
                     </p>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }

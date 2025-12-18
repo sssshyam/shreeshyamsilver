@@ -21,7 +21,7 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="bg-white border-b border-silver-200 sticky top-0 z-50">
+        <header className="bg-silver-200 border-b border-silver-300 sticky top-0 z-50">
             <div className="container-custom">
                 {/* Top Bar */}
                 <div className="border-b border-silver-100 py-2 text-sm text-silver-600 hidden md:block">

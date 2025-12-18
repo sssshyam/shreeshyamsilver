@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className="bg-accent text-white">
+        <footer className="bg-silver-800 text-white">
             {/* Map Section */}
             <div className="border-b border-white/10">
                 <div className="container-custom py-8">
