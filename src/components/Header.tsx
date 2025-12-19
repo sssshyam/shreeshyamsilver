@@ -22,35 +22,31 @@ export default function Header() {
 
     return (
         <header className="bg-silver-200 border-b border-silver-300 sticky top-0 z-50">
-            <div className="container-custom">
-                {/* Top Bar */}
-                <div className="border-b border-silver-100 py-2 text-sm text-silver-600 hidden md:block">
-                    <div className="flex justify-between items-center">
-                        <div className="flex gap-6">
-                            <span>✓ Premium Quality Silver</span>
-                            <span>✓ Free Secure Delivery</span>
-                            <span>✓ 100% Authentic</span>
-                        </div>
-                        <div className="flex gap-4">
-                            <Link to="/account" className="hover:text-accent transition-colors">Account</Link>
-                            <span>|</span>
-                            <a href="tel:+918504047243" className="hover:text-accent transition-colors">+91 85040 47243</a>
-                        </div>
+            {/* Top Bar Marquee */}
+            <div className="bg-silver-900 py-1 overflow-hidden">
+                <div className="w-full whitespace-nowrap overflow-hidden text-left pl-4">
+                    <div className="animate-marquee inline-block text-white text-xs md:text-sm font-medium tracking-wide">
+                        <span className="mr-24">
+                            Welcome to Shree Shyam Silver — Your premier destination for exquisite handcrafted silver jewelry in Nokha, Rajasthan. Founded by Ram Gopal Chandak with over 26 years of trust, we offer 100% authentic hallmark-certified silver. Explore our exclusive collection of Pooja items, Home Decor, and Custom Jewelry. Free Secure Delivery across India. Visit our showroom or shop online for timeless elegance. Call +91 85040 47243 for inquiries.
+                        </span>
+                        <span className="mr-24">
+                            Welcome to Shree Shyam Silver — Your premier destination for exquisite handcrafted silver jewelry in Nokha, Rajasthan. Founded by Ram Gopal Chandak with over 26 years of trust, we offer 100% authentic hallmark-certified silver. Explore our exclusive collection of Pooja items, Home Decor, and Custom Jewelry. Free Secure Delivery across India. Visit our showroom or shop online for timeless elegance. Call +91 85040 47243 for inquiries.
+                        </span>
                     </div>
                 </div>
+            </div>
 
+            <div className="container-custom">
                 {/* Main Header */}
                 <div className="py-4 md:py-6">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <Link to="/" className="flex items-center group">
-                            <div className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
-                                <img
-                                    src="https://i.ibb.co/6cM1rLKT/Shreeshyamsilver-1.png"
-                                    alt="Shree Shyam Silver"
-                                    className="h-14 md:h-16 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
+                        <Link to="/" className="flex items-center">
+                            <img
+                                src="https://i.ibb.co/yc86HQqc/shree-shyam-silver-logo-1.png"
+                                alt="Shree Shyam Silver"
+                                className="h-20 md:h-24 w-auto object-contain"
+                            />
                         </Link>
 
                         {/* Desktop Navigation */}
@@ -290,6 +286,6 @@ export default function Header() {
             {/* Modals */}
             <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
             <CartModal isOpen={showCartModal} onClose={() => setShowCartModal(false)} />
-        </header>
+        </header >
     );
 }

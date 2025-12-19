@@ -188,9 +188,19 @@
     display: none;
   }
 
-  /* Elegant Pattern */
-  .pattern-elegant {
-    background-image: radial-gradient(circle, rgba(192, 192, 192, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+  /* Marquee Animation */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 45s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
   }
 }
