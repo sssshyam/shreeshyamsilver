@@ -22,17 +22,12 @@ export default function Header() {
 
     return (
         <header className="bg-silver-200 border-b border-silver-300 sticky top-0 z-50">
-            {/* Top Bar Marquee */}
-            <div className="bg-silver-900 py-1 overflow-hidden">
-                <div className="w-full whitespace-nowrap overflow-hidden text-left pl-4">
-                    <div className="animate-marquee inline-block text-white text-xs md:text-sm font-medium tracking-wide">
-                        <span className="mr-24">
-                            Welcome to Shree Shyam Silver — Your premier destination for exquisite handcrafted silver jewelry in Nokha, Rajasthan. Founded by Ram Gopal Chandak with over 26 years of trust, we offer 100% authentic hallmark-certified silver. Explore our exclusive collection of Pooja items, Home Decor, and Custom Jewelry. Free Secure Delivery across India. Visit our showroom or shop online for timeless elegance. Call +91 85040 47243 for inquiries.
-                        </span>
-                        <span className="mr-24">
-                            Welcome to Shree Shyam Silver — Your premier destination for exquisite handcrafted silver jewelry in Nokha, Rajasthan. Founded by Ram Gopal Chandak with over 26 years of trust, we offer 100% authentic hallmark-certified silver. Explore our exclusive collection of Pooja items, Home Decor, and Custom Jewelry. Free Secure Delivery across India. Visit our showroom or shop online for timeless elegance. Call +91 85040 47243 for inquiries.
-                        </span>
-                    </div>
+            {/* Top Bar Static */}
+            <div className="bg-silver-900 py-1">
+                <div className="container-custom flex justify-center items-center">
+                    <p className="text-white text-xs md:text-sm font-medium tracking-wide">
+                        Welcome to Shree Shyam Silver
+                    </p>
                 </div>
             </div>
 
