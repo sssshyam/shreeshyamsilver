@@ -33,6 +33,10 @@ export default function CategoryPage() {
                     setError(`Category "${slug}" not found in database`);
                 }
 
+                if (categoryData) {
+                    document.title = `${categoryData.name} | Shree Shyam Silver`;
+                }
+
                 setCategory(categoryData);
                 setProducts(productsData || []);
             } catch (error) {
@@ -84,6 +88,8 @@ export default function CategoryPage() {
                         src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1920&q=80'}
                         alt={category.name}
                         className="w-full h-full object-cover opacity-50"
+                        // @ts-ignore
+                        fetchpriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-silver-900/90 via-silver-900/40 to-silver-900/30" />
                 </div>

@@ -6,7 +6,7 @@ export default function SEO() {
 
     useEffect(() => {
         // Base canonical URL
-        const baseUrl = 'https://shreeshyamsilver.com'; // Replace with actual domain when live
+        const baseUrl = 'https://www.shreeshyamsilver.com';
         const canonicalUrl = `${baseUrl}${location.pathname}`;
 
         // Update Canonical Tag

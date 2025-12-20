@@ -5,4 +5,4 @@ Disallow: /account/
 Disallow: /cart/
 Disallow: /checkout/
 
-Sitemap: https://shreeshyamsilver.com/sitemap.xml
+Sitemap: https://www.shreeshyamsilver.com/sitemap.xml

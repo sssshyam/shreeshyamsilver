@@ -34,6 +34,7 @@ export default function ProductDetailPage() {
                 setProduct(productData);
 
                 if (productData) {
+                    document.title = `${productData.name} | Shree Shyam Silver`;
                     // Fetch related products from same category
                     const allProducts = await getProducts();
                     const related = allProducts

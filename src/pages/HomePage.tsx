@@ -83,6 +83,8 @@ export default function HomePage() {
                         src="https://i.ibb.co/rK0CM947/IMG-8959.jpg"
                         alt="Luxury Silver Collection"
                         className="w-full h-full object-cover"
+                        // @ts-ignore
+                        fetchpriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
                 </div>
@@ -152,6 +154,7 @@ export default function HomePage() {
                                             src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&h=800&fit=crop'}
                                             alt={category.name}
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            loading="lazy"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
 
