@@ -32,12 +32,20 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
     const login = async (email: string, password: string): Promise<boolean> => {
         try {
-            // For demo purposes, we'll use a simple check
-            // In production, you should hash passwords with bcrypt
-            if (email === 'shreeshyamsilvernokha@gmail.com' && password === 'shreeshyamsilver@#$1234') {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+
+            if (error) {
+                console.error('Supabase Login Error:', error.message);
+                return false;
+            }
+
+            if (data.user) {
                 const adminUser: AdminUser = {
-                    id: 1,
-                    email: email,
+                    id: 1, // Legacy ID
+                    email: data.user.email || email,
                     name: 'Admin',
                     role: 'admin'
                 };
@@ -45,11 +53,15 @@ export function AdminProvider({ children }: { children: ReactNode }) {
                 setAdmin(adminUser);
                 localStorage.setItem('admin', JSON.stringify(adminUser));
 
-                // Update last login in database
-                await supabase
-                    .from('admin_users')
-                    .update({ last_login: new Date().toISOString() })
-                    .eq('email', email);
+                // Optional: Update legacy admin_users table if it exists and RLS allows
+                try {
+                    await supabase
+                        .from('admin_users')
+                        .update({ last_login: new Date().toISOString() })
+                        .eq('email', email);
+                } catch (e) {
+                    // Ignore error if table doesn't exist or RLS blocks
+                }
 
                 return true;
             }
@@ -60,7 +72,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         }
     };
 
-    const logout = () => {
+    const logout = async () => {
+        await supabase.auth.signOut();
         setAdmin(null);
         localStorage.removeItem('admin');
     };

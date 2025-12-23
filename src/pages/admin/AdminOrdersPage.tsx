@@ -73,13 +73,14 @@ export default function AdminOrdersPage() {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {orders.map((order) => (
                                 <tr key={order.id}>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        #{order.id}
+                                        #{(order as any).order_number || order.id}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {(order as any).customer_name || order.users?.name || 'Guest'}
@@ -101,6 +102,20 @@ export default function AdminOrdersPage() {
                                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                             {order.status}
                                         </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {(order as any).invoice_url ? (
+                                            <a
+                                                href={(order as any).invoice_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-indigo-600 hover:text-indigo-900 font-medium"
+                                            >
+                                                Download
+                                            </a>
+                                        ) : (
+                                            <span className="text-gray-400 text-xs">Pending</span>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

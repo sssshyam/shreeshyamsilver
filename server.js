@@ -35,6 +35,17 @@ app.post('/api/verify-payment', async (req, res) => {
 });
 
 const PORT = 5000;
+
+import webhookHandler from './api/webhook.js';
+app.post('/api/webhook', async (req, res) => {
+    try {
+        await webhookHandler(req, res);
+    } catch (error) {
+        console.error('Error in webhook handler:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`
     🚀 Backend server running on http://localhost:${PORT}

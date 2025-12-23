@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import OrderHistory from '../components/OrderHistory';
 
 export default function ProfilePage() {
     const { user, updateProfile, logout } = useAuth();
@@ -216,6 +217,12 @@ export default function ProfilePage() {
                             </div>
                         )}
                     </form>
+
+
+                    <div className="mt-12 border-t pt-8">
+                        <h2 className="text-xl font-serif font-bold text-gray-900 mb-6">My Orders</h2>
+                        <OrderHistory userId={user.id} />
+                    </div>
 
                     <div className="mt-10 pt-6 border-t">
                         <h3 className="text-lg font-semibold mb-4 text-red-600">Danger Zone</h3>
