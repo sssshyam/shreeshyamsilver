@@ -34,83 +34,104 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
         <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; margin: 0; padding: 0;">
           <div style="max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
             
-            <!-- Header -->
-            <div style="background-color: #1a202c; color: #ffffff; padding: 30px 20px; text-align: center;">
-              <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: 1px;">PAYMENT RECEIPT</h1>
-              <p style="margin: 5px 0 0; opacity: 0.8; font-size: 14px;">Shree Shyam Silver</p>
-            </div>
-            
-            <!-- Success Banner -->
-            <div style="background-color: #48bb78; color: white; text-align: center; padding: 10px; font-size: 14px; font-weight: bold;">
-              PAYMENT SUCCESSFUL
-            </div>
-
-            <!-- Content -->
-            <div style="padding: 40px 30px;">
-              <p style="margin-top: 0;">Hi ${order.customer_name},</p>
-              <p>Thank you for your payment. Your order has been confirmed successfully.</p>
-              
-              <!-- Order Info Grid -->
-              <div style="display: flex; justify-content: space-between; margin: 30px 0; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
-                <div style="text-align: left;">
-                  <span style="display: block; font-size: 11px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px;">Order Number</span>
-                  <span style="font-weight: bold; color: #2d3748; font-size: 16px;">#${order.order_number}</span>
-                </div>
-                <div style="text-align: right;">
-                  <span style="display: block; font-size: 11px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px;">Date</span>
-                  <span style="font-weight: bold; color: #2d3748; font-size: 16px;">${new Date(order.created_at).toLocaleDateString()}</span>
-                </div>
+              <!-- Header -->
+              <div style="background-color: #1a202c; color: #ffffff; padding: 40px 20px; text-align: center;">
+                <h1 style="margin: 0; font-size: 28px; font-weight: bold; letter-spacing: 2px;">INVOICE RECEIVED</h1>
+                <p style="margin: 10px 0 0; font-size: 16px;">Shree Shyam Silver</p>
+                <p style="margin: 5px 0 0; opacity: 0.8; font-size: 14px;">Nokha, Rajasthan | info@shreeshyamsilver.com</p>
               </div>
 
-              <!-- Line Items -->
-              <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                <thead>
-                  <tr style="border-bottom: 1px solid #e2e8f0;">
-                    <th style="text-align: left; padding: 10px 0; color: #718096; font-size: 12px; text-transform: uppercase;">Item Description</th>
-                    <th style="text-align: right; padding: 10px 0; color: #718096; font-size: 12px; text-transform: uppercase;">Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${items.map(item => `
-                  <tr style="border-bottom: 1px solid #edf2f7;">
-                    <td style="padding: 15px 0;">
-                      <div style="font-weight: 500; color: #2d3748;">${item.product_name}</div>
-                      <div style="font-size: 12px; color: #718096;">Qty: ${item.quantity}</div>
-                    </td>
-                    <td style="text-align: right; padding: 15px 0; font-weight: 500;">
-                      ₹${item.subtotal}
-                    </td>
-                  </tr>
-                  `).join('')}
-                </tbody>
-              </table>
+              <!-- Content -->
+              <div style="padding: 40px 30px;">
+                
+                <!-- Info Columns: Bill To & Order Details -->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
+                  
+                  <!-- Bill To -->
+                  <div style="width: 48%;">
+                    <h3 style="font-size: 12px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; margin-bottom: 15px;">Bill To</h3>
+                    <p style="margin: 0; font-weight: bold; color: #2d3748; font-size: 16px;">${order.customer_name || 'Guest'}</p>
+                    <p style="margin: 5px 0 0; color: #4a5568;">${order.customer_email}</p>
+                    <p style="margin: 5px 0 0; color: #4a5568;">${order.customer_phone || ''}</p>
+                    <p style="margin: 10px 0 0; color: #4a5568; line-height: 1.4;">
+                      ${order.customer_address || ''}<br>
+                      ${order.customer_city || ''}, ${order.customer_state || ''} ${order.customer_pincode || ''}
+                    </p>
+                  </div>
 
-              <!-- Totals -->
-              <div style="border-top: 2px solid #2d3748; padding-top: 15px; margin-top: 10px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                  <span style="color: #718096;">Subtotal</span>
-                  <span>₹${order.total_amount}</span>
+                  <!-- Order Details -->
+                  <div style="width: 48%; text-align: right;">
+                    <h3 style="font-size: 12px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; margin-bottom: 15px;">Order Details</h3>
+                    
+                    <div style="margin-bottom: 10px;">
+                      <span style="color: #718096; font-size: 14px;">Order ID:</span>
+                      <span style="display: block; font-weight: bold; color: #2d3748; font-size: 16px;">${order.order_number}</span>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                      <span style="color: #718096; font-size: 14px;">Date:</span>
+                      <span style="display: block; font-weight: bold; color: #2d3748; font-size: 16px;">${new Date(order.created_at).toLocaleDateString()}</span>
+                    </div>
+
+                    <div>
+                      <span style="color: #718096; font-size: 14px;">Payment Method:</span>
+                      <span style="display: block; font-weight: bold; color: #2d3748; font-size: 16px;">ONLINE (Razorpay)</span>
+                    </div>
+                  </div>
                 </div>
-                <!-- Add tax/shipping logic here if needed, assuming total is final for now -->
-                <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #2d3748; margin-top: 10px;">
-                  <span>Total Paid</span>
-                  <span>₹${order.total_amount}</span>
+
+                <!-- Line Items Table -->
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+                  <thead>
+                    <tr style="background-color: #f7fafc; border-bottom: 1px solid #e2e8f0;">
+                      <th style="text-align: left; padding: 12px 10px; color: #4a5568; font-size: 11px; text-transform: uppercase; font-weight: bold;">Item</th>
+                      <th style="text-align: center; padding: 12px 10px; color: #4a5568; font-size: 11px; text-transform: uppercase; font-weight: bold;">Qty</th>
+                      <th style="text-align: right; padding: 12px 10px; color: #4a5568; font-size: 11px; text-transform: uppercase; font-weight: bold;">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${items.map(item => `
+                    <tr style="border-bottom: 1px solid #edf2f7;">
+                      <td style="padding: 15px 10px; color: #2d3748; font-weight: 500;">
+                        ${item.product_name}
+                      </td>
+                      <td style="text-align: center; padding: 15px 10px; color: #4a5568;">
+                        ${item.quantity}
+                      </td>
+                      <td style="text-align: right; padding: 15px 10px; color: #2d3748; font-weight: bold;">
+                        ₹${item.subtotal}
+                      </td>
+                    </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+
+                <!-- Totals Section -->
+                <div style="border-top: 2px solid #e2e8f0; padding-top: 20px;">
+                  <div style="display: flex; justify-content: flex-end;">
+                    <div style="width: 200px;">
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #718096;">Total Amount:</span>
+                        <span style="font-weight: bold; color: #2d3748; font-size: 18px;">₹${order.total_amount}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Actions -->
+                ${invoiceSection}
+
+                <!-- Footer -->
+                <div style="text-align: center; margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 30px;">
+                  <p style="font-size: 14px; color: #2d3748; font-weight: medium; margin-bottom: 5px;">
+                    Thank you for shopping with Shree Shyam Silver!
+                  </p>
+                  <p style="font-size: 12px; color: #a0aec0; margin: 0;">
+                    Questions? Contact <a href="mailto:info@shreeshyamsilvernokha.com" style="color: #4a5568; text-decoration: none;">info@shreeshyamsilver.com</a>
+                  </p>
+                </div>
+
               </div>
-
-              <!-- Actions -->
-              ${invoiceSection}
-
-              <div style="text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
-                <p style="font-size: 12px; color: #a0aec0; margin-bottom: 5px;">
-                  Questions? Contact us at <a href="mailto:shreeshyamsilvernokha@gmail.com" style="color: #D4AF37; text-decoration: none;">shreeshyamsilvernokha@gmail.com</a>
-                </p>
-                <p style="font-size: 12px; color: #a0aec0; margin: 0;">
-                  This is a computer generated receipt.
-                </p>
-              </div>
-
-            </div>
           </div>
         </body>
         </html>
