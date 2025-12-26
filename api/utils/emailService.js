@@ -12,6 +12,11 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
 
   // 1. Send Customer Email
   try {
+    const invoiceSection = invoiceUrl
+      ? `<p>You can download your invoice here:</p>
+         <a href="${invoiceUrl}" style="background-color: #3182ce; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Download Invoice</a>`
+      : `<p>Your invoice will be generated shortly and available in your account.</p>`;
+
     await resend.emails.send({
       from: 'Shree Shyam Silver <orders@shreeshyamsilver.com>',
       reply_to: 'shreeshyamsilvernokha@gmail.com', // Replies go to your real Gmail
@@ -34,8 +39,7 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
             ${items.map(item => `<li>${item.product_name} x ${item.quantity} - Rs. ${item.subtotal}</li>`).join('')}
           </ul>
 
-          <p>You can download your invoice here:</p>
-          <a href="${invoiceUrl}" style="background-color: #3182ce; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Download Invoice</a>
+          ${invoiceSection}
           
           <p style="margin-top: 30px; font-size: 12px; color: #718096;">
             If you have any questions, please reply to this email.
@@ -52,6 +56,12 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
   const adminEmail = process.env.ADMIN_EMAIL || 'shreeshyamsilvernokha@gmail.com'; // Fallback to user provided email
 
   try {
+    const adminInvoiceSection = invoiceUrl
+      ? `<div style="text-align: center; margin-top: 30px;">
+            <a href="${invoiceUrl}" style="background-color: #2d3748; color: white; padding: 12px 25px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">View Invoice PDF</a>
+         </div>`
+      : `<p style="text-align: center; margin-top: 30px; color: #718096;">Invoice generation pending or failed.</p>`;
+
     await resend.emails.send({
       from: 'Shree Shyam Silver Alerts <orders@shreeshyamsilver.com>',
       reply_to: 'shreeshyamsilvernokha@gmail.com',
@@ -117,9 +127,7 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
             </table>
 
             <!-- Invoice Link -->
-             <div style="text-align: center; margin-top: 30px;">
-                <a href="${invoiceUrl}" style="background-color: #2d3748; color: white; padding: 12px 25px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">View Invoice PDF</a>
-             </div>
+             ${adminInvoiceSection}
 
           </div>
         </div>

@@ -53,7 +53,8 @@ export default async function handler(req, res) {
 
             // 2. Initialize Supabase
             const supabaseUrl = process.env.VITE_SUPABASE_URL;
-            const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+            // Use Service Role Key if available to bypass RLS policies for updates
+            const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
             const supabase = createClient(supabaseUrl, supabaseKey);
 
             // 3. Idempotency & Fetch Order
@@ -126,19 +127,23 @@ export default async function handler(req, res) {
 
                 } catch (err) {
                     console.error('❌ Invoice generation failed:', err);
-                    // Don't halt, try emails without invoice or skip
+                    // Continue without invoice
                 }
             }
 
-            // 6. Send Emails
-            if (!order.email_sent && invoiceUrl) {
+            // 6. Send Emails (Even if invoice failed)
+            if (!order.email_sent) {
                 console.log('📧 Sending Emails...');
+
+                // If invoiceUrl is missing, the emailService will handle it gracefully now
                 await sendOrderEmails(order, order.order_items, invoiceUrl);
 
                 await supabase
                     .from('orders')
                     .update({ email_sent: true })
                     .eq('id', order.id);
+
+                console.log('✅ Emails processed.');
             }
 
             return res.status(200).json({ success: true });

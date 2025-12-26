@@ -1,6 +1,8 @@
 
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
+import { generateInvoicePDF } from './utils/invoiceGenerator.js';
+import { sendOrderEmails } from './utils/emailService.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -33,12 +35,14 @@ export default async function handler(req, res) {
 
             // Update Supabase Order Status
             const supabaseUrl = process.env.VITE_SUPABASE_URL;
-            const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+            // Use Service Role Key if available to bypass RLS policies for updates
+            const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 
             if (supabaseUrl && supabaseKey) {
                 const supabase = createClient(supabaseUrl, supabaseKey);
 
-                const { error } = await supabase
+                // 1. Update Order Status
+                const { data: order, error } = await supabase
                     .from('orders')
                     .update({
                         payment_status: 'paid',
@@ -46,12 +50,71 @@ export default async function handler(req, res) {
                         razorpay_payment_id: razorpay_payment_id,
                         updated_at: new Date().toISOString()
                     })
-                    .eq('razorpay_order_id', razorpay_order_id);
+                    .eq('razorpay_order_id', razorpay_order_id)
+                    .select('*, order_items(*)')
+                    .single();
 
-                if (error) {
+                if (error || !order) {
                     console.error('Error updating order status:', error);
                     // Note: We still return success to frontend because payment IS successful. 
                     // Backend sync issue should be handled by logs/webhooks.
+                } else {
+                    // 2. IMMEDIATE ACTION: Generate Invoice & Send Email
+                    // This creates redundancy so user gets email even if webhook fails/delays
+
+                    try {
+                        console.log('Processing post-payment actions immediately...');
+
+                        // A. Generate Invoice if needed
+                        let invoiceUrl = order.invoice_url;
+                        if (!invoiceUrl) {
+                            try {
+                                const pdfBytes = await generateInvoicePDF(order, order.order_items);
+                                const fileName = `invoice-${order.order_number}.pdf`;
+
+                                const { error: uploadError } = await supabase
+                                    .storage
+                                    .from('invoices')
+                                    .upload(fileName, pdfBytes, {
+                                        contentType: 'application/pdf',
+                                        upsert: true
+                                    });
+
+                                if (!uploadError) {
+                                    const { data: { publicUrl } } = supabase
+                                        .storage
+                                        .from('invoices')
+                                        .getPublicUrl(fileName);
+
+                                    invoiceUrl = publicUrl;
+
+                                    // Update order with invoice URL
+                                    await supabase
+                                        .from('orders')
+                                        .update({ invoice_url: invoiceUrl, invoice_generated: true })
+                                        .eq('id', order.id);
+                                }
+                            } catch (invError) {
+                                console.error('Invoice generation warning:', invError);
+                            }
+                        }
+
+                        // B. Send Email if not sent
+                        if (!order.email_sent) {
+                            await sendOrderEmails(order, order.order_items, invoiceUrl);
+
+                            await supabase
+                                .from('orders')
+                                .update({ email_sent: true })
+                                .eq('id', order.id);
+
+                            console.log('✅ Backup email sent successfully');
+                        }
+
+                    } catch (postProcessError) {
+                        // Don't fail the request if email fails, just log it
+                        console.error('Post-payment processing error:', postProcessError);
+                    }
                 }
             }
 
