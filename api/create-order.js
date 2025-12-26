@@ -136,7 +136,24 @@ export default async function handler(req, res) {
             // The Razorpay order is valid, so we let the user pay. 
             // We will fix the sync in the webhook.
         } else if (orderData && verifiedItems.length > 0) {
-            // ... (item insertion logic remains)
+            // 5. Insert Order Items
+            const orderItemsToInsert = verifiedItems.map(item => ({
+                order_id: orderData.id,
+                product_id: item.product_id,
+                product_name: item.product_name,
+                product_price: item.product_price,
+                quantity: item.quantity,
+                subtotal: item.subtotal,
+                created_at: new Date().toISOString()
+            }));
+
+            const { error: itemsError } = await supabase
+                .from('order_items')
+                .insert(orderItemsToInsert);
+
+            if (itemsError) {
+                console.error('Error creating order items:', itemsError);
+            }
         }
 
         // Return order details to frontend
