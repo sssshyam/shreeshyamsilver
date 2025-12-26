@@ -149,7 +149,20 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error('Error in create-order handler:', error);
-        // Return the specific error message to the frontend for debugging
-        res.status(500).json({ error: `Server Error: ${error.message}` });
+
+        let errorMessage = 'Unknown error';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        } else if (typeof error === 'object') {
+            try {
+                errorMessage = JSON.stringify(error);
+            } catch (e) {
+                errorMessage = 'Circular error object';
+            }
+        } else {
+            errorMessage = String(error);
+        }
+
+        res.status(500).json({ error: `Server Error: ${errorMessage}` });
     }
 }
