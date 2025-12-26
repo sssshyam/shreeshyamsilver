@@ -13,41 +13,110 @@ export async function sendOrderEmails(order, items, invoiceUrl) {
   // 1. Send Customer Email
   try {
     const invoiceSection = invoiceUrl
-      ? `<p>You can download your invoice here:</p>
-         <a href="${invoiceUrl}" style="background-color: #3182ce; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Download Invoice</a>`
-      : `<p>Your invoice will be generated shortly and available in your account.</p>`;
+      ? `<div style="text-align: center; margin: 30px 0;">
+           <a href="${invoiceUrl}" style="background-color: #D4AF37; color: white; padding: 12px 25px; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: sans-serif;">Download Official Invoice</a>
+           <p style="margin-top: 10px; font-size: 13px; color: #718096;">Payment ID: ${order.razorpay_payment_id || 'N/A'}</p>
+         </div>`
+      : `<p style="text-align: center; color: #718096;">Invoice generation in progress.</p>`;
 
     await resend.emails.send({
       from: 'Shree Shyam Silver <orders@shreeshyamsilver.com>',
-      reply_to: 'shreeshyamsilvernokha@gmail.com', // Replies go to your real Gmail
+      reply_to: 'shreeshyamsilvernokha@gmail.com',
       to: order.customer_email,
-      subject: `Order Confirmation - ${order.order_number}`,
+      subject: `Payment Receipt: Order #${order.order_number}`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-          <h1 style="color: #4a5568;">Order Confirmed!</h1>
-          <p>Hi ${order.customer_name},</p>
-          <p>Thank you for your order. We have received your payment and are processing your order.</p>
-          
-          <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Order ID:</strong> ${order.order_number}</p>
-            <p><strong>Amount Paid:</strong> Rs. ${order.total_amount}</p>
-            <p><strong>Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Payment Receipt</title>
+        </head>
+        <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            
+            <!-- Header -->
+            <div style="background-color: #1a202c; color: #ffffff; padding: 30px 20px; text-align: center;">
+              <h1 style="margin: 0; font-size: 24px; font-weight: 300; letter-spacing: 1px;">PAYMENT RECEIPT</h1>
+              <p style="margin: 5px 0 0; opacity: 0.8; font-size: 14px;">Shree Shyam Silver</p>
+            </div>
+            
+            <!-- Success Banner -->
+            <div style="background-color: #48bb78; color: white; text-align: center; padding: 10px; font-size: 14px; font-weight: bold;">
+              PAYMENT SUCCESSFUL
+            </div>
+
+            <!-- Content -->
+            <div style="padding: 40px 30px;">
+              <p style="margin-top: 0;">Hi ${order.customer_name},</p>
+              <p>Thank you for your payment. Your order has been confirmed successfully.</p>
+              
+              <!-- Order Info Grid -->
+              <div style="display: flex; justify-content: space-between; margin: 30px 0; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
+                <div style="text-align: left;">
+                  <span style="display: block; font-size: 11px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px;">Order Number</span>
+                  <span style="font-weight: bold; color: #2d3748; font-size: 16px;">#${order.order_number}</span>
+                </div>
+                <div style="text-align: right;">
+                  <span style="display: block; font-size: 11px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px;">Date</span>
+                  <span style="font-weight: bold; color: #2d3748; font-size: 16px;">${new Date(order.created_at).toLocaleDateString()}</span>
+                </div>
+              </div>
+
+              <!-- Line Items -->
+              <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                  <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <th style="text-align: left; padding: 10px 0; color: #718096; font-size: 12px; text-transform: uppercase;">Item Description</th>
+                    <th style="text-align: right; padding: 10px 0; color: #718096; font-size: 12px; text-transform: uppercase;">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${items.map(item => `
+                  <tr style="border-bottom: 1px solid #edf2f7;">
+                    <td style="padding: 15px 0;">
+                      <div style="font-weight: 500; color: #2d3748;">${item.product_name}</div>
+                      <div style="font-size: 12px; color: #718096;">Qty: ${item.quantity}</div>
+                    </td>
+                    <td style="text-align: right; padding: 15px 0; font-weight: 500;">
+                      ₹${item.subtotal}
+                    </td>
+                  </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+
+              <!-- Totals -->
+              <div style="border-top: 2px solid #2d3748; padding-top: 15px; margin-top: 10px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                  <span style="color: #718096;">Subtotal</span>
+                  <span>₹${order.total_amount}</span>
+                </div>
+                <!-- Add tax/shipping logic here if needed, assuming total is final for now -->
+                <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #2d3748; margin-top: 10px;">
+                  <span>Total Paid</span>
+                  <span>₹${order.total_amount}</span>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              ${invoiceSection}
+
+              <div style="text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <p style="font-size: 12px; color: #a0aec0; margin-bottom: 5px;">
+                  Questions? Contact us at <a href="mailto:shreeshyamsilvernokha@gmail.com" style="color: #D4AF37; text-decoration: none;">shreeshyamsilvernokha@gmail.com</a>
+                </p>
+                <p style="font-size: 12px; color: #a0aec0; margin: 0;">
+                  This is a computer generated receipt.
+                </p>
+              </div>
+
+            </div>
           </div>
-
-          <h3>Order Details:</h3>
-          <ul>
-            ${items.map(item => `<li>${item.product_name} x ${item.quantity} - Rs. ${item.subtotal}</li>`).join('')}
-          </ul>
-
-          ${invoiceSection}
-          
-          <p style="margin-top: 30px; font-size: 12px; color: #718096;">
-            If you have any questions, please reply to this email.
-          </p>
-        </div>
+        </body>
+        </html>
       `
     });
-    console.log(`✅ Customer email sent to ${order.customer_email}`);
+    console.log(`✅ Customer Payment Receipt sent to ${order.customer_email}`);
   } catch (error) {
     console.error('❌ Failed to send customer email:', error);
   }

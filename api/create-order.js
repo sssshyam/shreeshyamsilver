@@ -19,7 +19,8 @@ export default async function handler(req, res) {
 
         // Initialize Supabase
         const supabaseUrl = process.env.VITE_SUPABASE_URL;
-        const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+        // Use Service Role Key if available to bypass RLS policies for order creation/price checks
+        const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 
         if (!supabaseUrl || !supabaseKey) {
             return res.status(500).json({ error: 'Server configuration error (Supabase)' });
