@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /adminshreeshyamsilvernokha/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+
+Sitemap: https://www.shreeshyamsilver.com/sitemap.xml
