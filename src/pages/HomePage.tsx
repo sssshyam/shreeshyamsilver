@@ -11,56 +11,72 @@ export default function HomePage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let isMounted = true;
         async function fetchData() {
             setLoading(true);
+
+            // Safety timeout - if API hangs, stop loading after 5s
+            const timeoutId = setTimeout(() => {
+                if (isMounted && loading) {
+                    console.warn('HomePage: Data fetch timed out');
+                    setLoading(false);
+                }
+            }, 5000);
+
             try {
                 const [categoriesData, productsData] = await Promise.all([
                     getCategories(),
                     getFeaturedProducts()
                 ]);
 
-                setCategories(categoriesData);
-                setFeaturedProducts(productsData);
+                if (isMounted) {
+                    setCategories(categoriesData);
+                    setFeaturedProducts(productsData);
 
-                // Hardcoded Real Rajasthani Reviews
-                setTestimonials([
-                    {
-                        id: 1,
-                        name: 'Rameshwar Lal',
-                        text: 'Very good quality silver. I bought a thali set for my daughter\'s wedding. The shine is perfect and Ram Gopal ji gave us very good service.',
-                        rating: 5,
-                        location: 'Nokha'
-                    },
-                    {
-                        id: 2,
-                        name: 'Sarita Devi',
-                        text: 'Beautiful design. I visited the shop in Nokha and they have so many varieties. The finishing is like real silver.',
-                        rating: 5,
-                        location: 'Bikaner'
-                    },
-                    {
-                        id: 3,
-                        name: 'Kishan Gopal Vyas',
-                        text: 'Honest shop. Rates are reasonable and the product heavy and durable. Fully satisfied with my purchase.',
-                        rating: 5,
-                        location: 'Nagaur'
-                    },
-                    {
-                        id: 4,
-                        name: 'Sunita Agarwal',
-                        text: 'Ordered online for my home temple using WhatsApp number. Received parcel safely and item is same as photo. Trusted people.',
-                        rating: 4,
-                        location: 'Jaipur'
-                    }
-                ]);
+                    // Hardcoded Real Rajasthani Reviews
+                    setTestimonials([
+                        {
+                            id: 1,
+                            name: 'Rameshwar Lal',
+                            text: 'Very good quality silver. I bought a thali set for my daughter\'s wedding. The shine is perfect and Ram Gopal ji gave us very good service.',
+                            rating: 5,
+                            location: 'Nokha'
+                        },
+                        {
+                            id: 2,
+                            name: 'Sarita Devi',
+                            text: 'Beautiful design. I visited the shop in Nokha and they have so many varieties. The finishing is like real silver.',
+                            rating: 5,
+                            location: 'Bikaner'
+                        },
+                        {
+                            id: 3,
+                            name: 'Kishan Gopal Vyas',
+                            text: 'Honest shop. Rates are reasonable and the product heavy and durable. Fully satisfied with my purchase.',
+                            rating: 5,
+                            location: 'Nagaur'
+                        },
+                        {
+                            id: 4,
+                            name: 'Sunita Agarwal',
+                            text: 'Ordered online for my home temple using WhatsApp number. Received parcel safely and item is same as photo. Trusted people.',
+                            rating: 4,
+                            location: 'Jaipur'
+                        }
+                    ]);
+                }
             } catch (error) {
                 console.error('Error fetching homepage data:', error);
             } finally {
-                setLoading(false);
+                clearTimeout(timeoutId);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         }
 
         fetchData();
+        return () => { isMounted = false; };
     }, []);
 
     if (loading) {

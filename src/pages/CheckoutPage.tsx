@@ -27,6 +27,8 @@ export default function CheckoutPage() {
         notes: ''
     });
 
+    const [paymentMethod, setPaymentMethod] = useState<'online' | 'cod'>('online');
+
     const [isProcessing, setIsProcessing] = useState(false);
 
     const loadRazorpayScript = () => {
@@ -78,8 +80,65 @@ export default function CheckoutPage() {
             return;
         }
 
+        if (cartItems.length === 0) {
+            alert('Your cart is empty');
+            return;
+        }
+
         setIsProcessing(true);
 
+        // COD Path
+        if (paymentMethod === 'cod') {
+            try {
+                // 1. Create Order on Server (Backend will calculate +100 for COD)
+                const orderResponse = await fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        items: cartItems.map(item => ({
+                            product_id: item.product_id,
+                            quantity: item.quantity
+                        })),
+                        currency: 'INR',
+                        receipt: `rcpt_${Date.now().toString().slice(-6)}`,
+                        notes: {
+                            customer_name: `${formData.firstName} ${formData.lastName}`,
+                            shipping_city: formData.city,
+                            order_notes: formData.notes
+                        },
+                        user_id: user?.id,
+                        shipping_address: {
+                            first_name: formData.firstName,
+                            last_name: formData.lastName,
+                            email: formData.user_email,
+                            phone: formData.phone,
+                            address: formData.address,
+                            city: formData.city,
+                            state: formData.state,
+                            pincode: formData.pincode
+                        },
+                        payment_method: 'cod' // Signal backend to add charge
+                    })
+                });
+
+                const orderData = await orderResponse.json();
+
+                if (!orderResponse.ok) {
+                    throw new Error(orderData.error || 'Failed to create order');
+                }
+
+                // For COD, we are done. Clear cart and redirect.
+                await clearCart();
+                navigate('/orders');
+
+            } catch (error: any) {
+                console.error('COD Order Error:', error);
+                alert(`Error: ${error.message}`);
+            } finally {
+                setIsProcessing(false);
+            }
+            return;
+        }
         const res = await loadRazorpayScript();
         if (!res) {
             alert('Razorpay SDK failed to load. Are you online?');
@@ -115,7 +174,8 @@ export default function CheckoutPage() {
                         city: formData.city,
                         state: formData.state,
                         pincode: formData.pincode
-                    }
+                    },
+                    payment_method: 'online'
                 })
             });
 
@@ -311,6 +371,51 @@ export default function CheckoutPage() {
                                 ></textarea>
                             </div>
                         </form>
+
+                        <div className="mt-8 border-t pt-6">
+                            <h3 className="text-lg font-medium mb-4">Payment Method</h3>
+                            <div className="space-y-3">
+                                <label className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'online' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-gray-200 hover:border-accent/50'}`}>
+                                    <div className="flex items-center gap-3">
+                                        <input
+                                            type="radio"
+                                            name="paymentMethod"
+                                            value="online"
+                                            checked={paymentMethod === 'online'}
+                                            onChange={() => setPaymentMethod('online')}
+                                            className="text-accent focus:ring-accent"
+                                        />
+                                        <div>
+                                            <span className="font-medium block">Pay Online</span>
+                                            <span className="text-xs text-gray-500">Cards, UPI, NetBanking (Secured by Razorpay)</span>
+                                        </div>
+                                    </div>
+                                    <div className="text-xl text-gray-400">
+                                        💳
+                                    </div>
+                                </label>
+
+                                <label className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-accent bg-accent/5 ring-1 ring-accent' : 'border-gray-200 hover:border-accent/50'}`}>
+                                    <div className="flex items-center gap-3">
+                                        <input
+                                            type="radio"
+                                            name="paymentMethod"
+                                            value="cod"
+                                            checked={paymentMethod === 'cod'}
+                                            onChange={() => setPaymentMethod('cod')}
+                                            className="text-accent focus:ring-accent"
+                                        />
+                                        <div>
+                                            <span className="font-medium block">Cash on Delivery (COD)</span>
+                                            <span className="text-xs text-gray-500">Pay cash upon delivery (+₹100 Handling Fee)</span>
+                                        </div>
+                                    </div>
+                                    <div className="text-xl text-gray-400">
+                                        💵
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Order Summary */}
@@ -340,9 +445,15 @@ export default function CheckoutPage() {
                                     <span>Shipping</span>
                                     <span>Free</span>
                                 </div>
+                                {paymentMethod === 'cod' && (
+                                    <div className="flex justify-between text-silver-600">
+                                        <span>COD Handling Fee</span>
+                                        <span>₹100</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between font-bold text-lg pt-2 border-t">
                                     <span>Total</span>
-                                    <span>₹{cartTotal}</span>
+                                    <span>₹{paymentMethod === 'cod' ? cartTotal + 100 : cartTotal}</span>
                                 </div>
                             </div>
 
@@ -360,7 +471,9 @@ export default function CheckoutPage() {
                                         Processing...
                                     </>
                                 ) : (
-                                    `Pay Now (₹${cartTotal})`
+                                    paymentMethod === 'cod'
+                                        ? `Place Order (₹${cartTotal + 100})`
+                                        : `Pay Now (₹${cartTotal})`
                                 )}
                             </button>
 

@@ -10,6 +10,7 @@ interface User {
     city: string | null;
     state: string | null;
     pincode: string | null;
+    avatar_url?: string;
 }
 
 interface AuthContextType {
@@ -17,6 +18,7 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
     signup: (email: string, password: string, name: string) => Promise<{ success: boolean; error?: string }>;
     logout: () => void;
+    signInWithGoogle: () => Promise<{ success: boolean; error?: string }>;
     updateProfile: (data: Partial<User>) => Promise<boolean>;
     isLoading: boolean;
     isProfileComplete: () => boolean;
@@ -29,13 +31,125 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Check if user is logged in
+        let mounted = true;
+
+        // 1. Initial Load: Check local storage first for immediate UI feedback
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-        setIsLoading(false);
+
+        // 2. Supabase Auth Listener (Handles Google Redirects & Session Persistence)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log('Auth State Change:', event);
+
+            if (event === 'SIGNED_IN' && session?.user) {
+                // Sync Supabase Auth User with our Custom Users Table
+                // We do NOT await this to prevent blocking the UI
+                syncUser(session.user).catch(err => console.error('Sync user failed:', err));
+            } else if (event === 'SIGNED_OUT') {
+                setUser(null);
+                localStorage.removeItem('user');
+                localStorage.removeItem('cart');
+            }
+
+            if (mounted) setIsLoading(false);
+        });
+
+        // Cleanup
+        return () => {
+            mounted = false;
+            subscription.unsubscribe();
+        };
     }, []);
+
+    const syncUser = async (authUser: any) => {
+        try {
+            const email = authUser.email;
+            if (!email) return;
+
+            // Check if user exists in our 'users' table
+            const { data: existingUser } = await supabase
+                .from('users')
+                .select('*')
+                .eq('email', email)
+                .single();
+
+            let appUser: User;
+
+            if (existingUser) {
+                // User exists, update local state
+                // Use avatar from Google if local is missing, or update it?
+                // For now, prioritize Google Avatar if available
+                const avatar = authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture;
+
+                appUser = {
+                    id: existingUser.id,
+                    email: existingUser.email,
+                    name: existingUser.name,
+                    phone: existingUser.phone,
+                    address: existingUser.address,
+                    city: existingUser.city,
+                    state: existingUser.state,
+                    pincode: existingUser.pincode,
+                    avatar_url: avatar
+                };
+            } else {
+                // New User via Google: Create record
+                const name = authUser.user_metadata?.full_name || authUser.user_metadata?.name || email.split('@')[0];
+                const avatar = authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture;
+
+                const { data: newUser, error } = await supabase
+                    .from('users')
+                    .insert([{
+                        email,
+                        name,
+                        password_hash: 'google_oauth_placeholder', // Placeholder
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    }])
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                appUser = {
+                    id: newUser.id,
+                    email: newUser.email,
+                    name: newUser.name,
+                    phone: newUser.phone,
+                    address: newUser.address,
+                    city: newUser.city,
+                    state: newUser.state,
+                    pincode: newUser.pincode,
+                    avatar_url: avatar
+                };
+            }
+
+            setUser(appUser);
+            localStorage.setItem('user', JSON.stringify(appUser));
+
+        } catch (error) {
+            console.error('Error syncing user:', error);
+        }
+    };
+
+    const signInWithGoogle = async () => {
+        try {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
+            });
+
+            if (error) throw error;
+            return { success: true };
+        } catch (error: any) {
+            console.error('Google Sign In Error:', error);
+            return { success: false, error: error.message };
+        }
+    };
 
     const signup = async (email: string, password: string, name: string) => {
         try {
@@ -168,6 +282,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             login,
             signup,
             logout,
+            signInWithGoogle,
             updateProfile,
             isLoading,
             isProfileComplete

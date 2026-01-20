@@ -9,19 +9,39 @@ export default function CategoriesPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let isMounted = true;
         async function fetchCategories() {
             setLoading(true);
+            console.log('CategoriesPage: Starting fetchCategories...');
+
+            // Timeout to prevent infinite loading
+            const timeoutId = setTimeout(() => {
+                if (isMounted && loading) {
+                    console.error('CategoriesPage: Fetch timed out!');
+                    setLoading(false);
+                    // You might want to set an error state here
+                }
+            }, 8000); // 8 seconds timeout
+
             try {
                 const data = await getCategories();
-                setCategories(data);
+                console.log('CategoriesPage: Data received:', data);
+                if (isMounted) {
+                    setCategories(data);
+                }
             } catch (error) {
-                console.error('Error fetching categories:', error);
+                console.error('CategoriesPage: Error fetching categories:', error);
             } finally {
-                setLoading(false);
+                clearTimeout(timeoutId);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         }
 
         fetchCategories();
+
+        return () => { isMounted = false; };
     }, []);
 
     if (loading) {

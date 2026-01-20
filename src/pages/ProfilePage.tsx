@@ -88,8 +88,16 @@ export default function ProfilePage() {
                 <div className="bg-white rounded-lg shadow-sm border p-8">
                     <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 bg-silver-100 rounded-full flex items-center justify-center text-2xl font-serif text-silver-600">
-                                {user.name?.[0]?.toUpperCase() || 'U'}
+                            <div className="w-16 h-16 bg-silver-100 rounded-full flex items-center justify-center text-2xl font-serif text-silver-600 overflow-hidden border border-silver-200">
+                                {user.avatar_url ? (
+                                    <img
+                                        src={user.avatar_url}
+                                        alt={user.name || 'User'}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <span>{user.name?.[0]?.toUpperCase() || 'U'}</span>
+                                )}
                             </div>
                             <div>
                                 <h2 className="text-xl font-semibold">{user.name || 'User'}</h2>

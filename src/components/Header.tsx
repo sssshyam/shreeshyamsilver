@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import AuthModal from './auth/AuthModal';
+import AuthPopup from './auth/AuthPopup';
 import CartModal from './cart/CartModal';
 import { getCategories } from '../services/api';
 import { Category } from '../types';
@@ -19,6 +20,7 @@ export default function Header() {
     useEffect(() => {
         getCategories().then(setCategories);
     }, []);
+
 
     return (
         <header className="bg-silver-200 border-b border-silver-300 sticky top-0 z-50">
@@ -146,10 +148,18 @@ export default function Header() {
                                         onClick={() => setShowUserMenu(!showUserMenu)}
                                         className="flex items-center gap-2 text-silver-700 hover:text-accent transition-colors"
                                     >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                        <span className="text-sm font-medium">{user.name || 'Account'}</span>
+                                        {user.avatar_url ? (
+                                            <img
+                                                src={user.avatar_url}
+                                                alt={user.name || 'User'}
+                                                className="w-8 h-8 rounded-full border border-silver-200 object-cover"
+                                            />
+                                        ) : (
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        )}
+                                        <span className="text-sm font-medium">{user.name?.split(' ')[0] || 'Account'}</span>
                                     </button>
 
                                     {showUserMenu && (
@@ -281,6 +291,7 @@ export default function Header() {
             {/* Modals */}
             <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
             <CartModal isOpen={showCartModal} onClose={() => setShowCartModal(false)} />
+            <AuthPopup />
         </header >
     );
 }

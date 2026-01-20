@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     try {
         // PHASE 2 FIX: Secure Backend Pricing Calculation
         // We now ignore any 'amount' sent from frontend and calculate it here.
-        const { currency = 'INR', receipt, notes, items, user_id, shipping_address } = req.body;
+        const { currency = 'INR', receipt, notes, items, user_id, shipping_address, payment_method } = req.body;
 
         if (!items || !Array.isArray(items) || items.length === 0) {
             return res.status(400).json({ error: 'No items provided' });
@@ -73,8 +73,79 @@ export default async function handler(req, res) {
             });
         }
 
+        // Add COD Fee if applicable
+        if (payment_method === 'cod') {
+            calculatedTotalAmount += 100;
+        }
+
         if (calculatedTotalAmount <= 0) {
             return res.status(400).json({ error: 'Invalid total amount' });
+        }
+
+        // Handle COD Orders (Skip Razorpay)
+        if (payment_method === 'cod') {
+            // 4. Create Order in Supabase
+            const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+            const { data: orderData, error: orderError } = await supabase
+                .from('orders')
+                .insert([
+                    {
+                        order_number: orderNumber,
+                        user_id: user_id || null,
+                        total_amount: calculatedTotalAmount, // Verified amount (includes +100)
+                        status: 'placed', // Directly placed
+                        payment_status: 'pending', // Payment to be collected
+                        payment_method: 'cod',
+                        razorpay_order_id: null, // No Razorpay ID
+
+                        customer_name: shipping_address ? `${shipping_address.first_name || ''} ${shipping_address.last_name || ''}`.trim() : 'Guest',
+                        customer_email: shipping_address?.email || '',
+                        customer_phone: shipping_address?.phone || '',
+                        customer_address: shipping_address?.address || '',
+                        customer_city: shipping_address?.city || '',
+                        customer_state: shipping_address?.state || '',
+                        customer_pincode: shipping_address?.pincode || '',
+                        notes: notes?.order_notes || '',
+
+                        created_at: new Date().toISOString(),
+                    },
+                ])
+                .select()
+                .single();
+
+            if (orderError) {
+                console.error('Error creating Supabase order (COD):', orderError);
+                return res.status(500).json({ error: 'Failed to create order' });
+            }
+
+            // 5. Insert Order Items
+            if (orderData && verifiedItems.length > 0) {
+                const orderItemsToInsert = verifiedItems.map(item => ({
+                    order_id: orderData.id,
+                    product_id: item.product_id,
+                    product_name: item.product_name,
+                    product_price: item.product_price,
+                    quantity: item.quantity,
+                    subtotal: item.subtotal,
+                    created_at: new Date().toISOString()
+                }));
+
+                const { error: itemsError } = await supabase
+                    .from('order_items')
+                    .insert(orderItemsToInsert);
+
+                if (itemsError) {
+                    console.error('Error creating order items (COD):', itemsError);
+                }
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: 'Order placed successfully via COD',
+                order_id: orderData.id,
+                amount: calculatedTotalAmount
+            });
         }
 
         // Initialize Razorpay
@@ -112,7 +183,7 @@ export default async function handler(req, res) {
                     total_amount: calculatedTotalAmount, // Verified amount
                     status: 'pending',
                     payment_status: 'pending',
-                    payment_method: 'razorpay',
+                    payment_method: 'online', // Default to online/razorpay
                     razorpay_order_id: order.id,
 
                     customer_name: shipping_address ? `${shipping_address.first_name || ''} ${shipping_address.last_name || ''}`.trim() : 'Guest',
@@ -163,7 +234,6 @@ export default async function handler(req, res) {
             amount: order.amount,
             key_id: key_id
         });
-
     } catch (error) {
         console.error('Error in create-order handler:', error);
 
