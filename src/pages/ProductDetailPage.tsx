@@ -232,9 +232,17 @@ export default function ProductDetailPage() {
 
                         {/* Price */}
                         <div className="mb-6">
-                            <p className="text-4xl font-semibold text-accent mb-2">
-                                ₹{product.price.toLocaleString('en-IN')}
-                            </p>
+                            <div className="flex items-end gap-3 mb-2">
+                                <p className="text-4xl font-semibold text-accent">
+                                    ₹{product.price.toLocaleString('en-IN')}
+                                </p>
+                                <p className="text-xl text-silver-400 line-through mb-1">
+                                    ₹{(product.price * 1.25).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                                </p>
+                                <span className="text-lg font-medium text-green-600 mb-1 bg-green-50 px-2 py-0.5 rounded">
+                                    20% OFF
+                                </span>
+                            </div>
                             <p className="text-silver-600">Inclusive of all taxes</p>
                         </div>
 

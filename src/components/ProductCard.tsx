@@ -70,9 +70,17 @@ export default function ProductCard({ product }: ProductCardProps) {
                         </div>
                     )}
 
-                    <p className="text-xl font-semibold text-accent mb-4">
-                        ₹{product.price.toLocaleString('en-IN')}
-                    </p>
+                    <div className="flex items-center gap-2 mb-4">
+                        <p className="text-xl font-semibold text-accent">
+                            ₹{product.price.toLocaleString('en-IN')}
+                        </p>
+                        <p className="text-sm text-silver-400 line-through">
+                            ₹{(product.price * 1.25).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                        </p>
+                        <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                            20% OFF
+                        </span>
+                    </div>
                 </div>
             </Link>
 

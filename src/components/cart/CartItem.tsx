@@ -50,9 +50,17 @@ export default function CartItem({
                     </p>
                 )}
 
-                <p className="text-lg font-semibold text-accent mt-2">
-                    ₹{product.price.toLocaleString('en-IN')}
-                </p>
+                <div className="flex items-center gap-2 mt-2">
+                    <p className="text-lg font-semibold text-accent">
+                        ₹{product.price.toLocaleString('en-IN')}
+                    </p>
+                    <p className="text-sm text-silver-400 line-through">
+                        ₹{(product.price * 1.25).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                    </p>
+                    <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                        20% OFF
+                    </span>
+                </div>
 
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-4 mt-4">

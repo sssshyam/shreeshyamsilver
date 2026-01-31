@@ -431,7 +431,12 @@ export default function CheckoutPage() {
                                             </div>
                                             <span>{item.product.name} (x{item.quantity})</span>
                                         </div>
-                                        <span className="font-medium">₹{item.product.price * item.quantity}</span>
+                                        <div className="text-right">
+                                            <div className="font-medium">₹{(item.product.price * item.quantity).toLocaleString('en-IN')}</div>
+                                            <div className="text-xs text-silver-400 line-through">
+                                                ₹{(item.product.price * item.quantity * 1.25).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
