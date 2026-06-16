@@ -111,7 +111,7 @@ export default function MyOrdersPage() {
                                 <div className="space-y-4">
                                     {(order.items as any)?.map((item: any, idx: number) => (
                                         <div key={idx} className="flex gap-4 items-center">
-                                            <img
+                                            <img loading="lazy"
                                                 src={item.product?.image_url || 'https://via.placeholder.com/64'}
                                                 alt={item.product?.name}
                                                 className="w-16 h-16 object-cover rounded"
@@ -131,3 +131,4 @@ export default function MyOrdersPage() {
         </div>
     );
 }
+

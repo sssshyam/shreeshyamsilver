@@ -70,7 +70,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                         onClick={onClose}
                                         className="flex-shrink-0"
                                     >
-                                        <img
+                                        <img loading="lazy"
                                             src={item.product.image_url || 'https://via.placeholder.com/100'}
                                             alt={item.product.name}
                                             className="w-20 h-20 object-cover rounded"
@@ -154,3 +154,4 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         </>
     );
 }
+

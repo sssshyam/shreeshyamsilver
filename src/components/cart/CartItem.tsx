@@ -22,7 +22,7 @@ export default function CartItem({
         <div className="flex gap-6 py-6 border-b border-silver-200">
             {/* Product Image */}
             <Link to={`/product/${product.slug}`} className="flex-shrink-0">
-                <img
+                <img loading="lazy"
                     src={product.image_url || 'https://via.placeholder.com/150'}
                     alt={product.name}
                     className="w-32 h-32 object-cover rounded-lg"
@@ -105,3 +105,4 @@ export default function CartItem({
         </div>
     );
 }
+

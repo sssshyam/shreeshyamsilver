@@ -28,7 +28,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {/* Brand Info */}
                     <div>
-                        <img
+                        <img loading="lazy"
                             src="https://i.ibb.co/yc86HQqc/shree-shyam-silver-logo-1.png"
                             alt="Shree Shyam Silver"
                             className="h-28 w-auto object-contain mb-2"
@@ -210,3 +210,4 @@ export default function Footer() {
         </footer>
     );
 }
+

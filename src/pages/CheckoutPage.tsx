@@ -427,7 +427,7 @@ export default function CheckoutPage() {
                                     <div key={item.id} className="flex justify-between items-center text-sm">
                                         <div className="flex items-center gap-3">
                                             <div className="w-8 h-8 rounded bg-gray-100 overflow-hidden">
-                                                <img src={item.product.image_url} alt={item.product.name} className="w-full h-full object-cover" />
+                                                <img loading="lazy" src={item.product.image_url} alt={item.product.name} className="w-full h-full object-cover" />
                                             </div>
                                             <span>{item.product.name} (x{item.quantity})</span>
                                         </div>
@@ -495,3 +495,4 @@ export default function CheckoutPage() {
         </div>
     );
 }
+

@@ -177,7 +177,7 @@ export default function AdminProductsPage() {
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     {product.image_url && (
-                                                        <img
+                                                        <img loading="lazy"
                                                             src={product.image_url}
                                                             alt={product.name}
                                                             className="w-12 h-12 object-cover rounded"
@@ -257,3 +257,4 @@ export default function AdminProductsPage() {
         </AdminLayout>
     );
 }
+

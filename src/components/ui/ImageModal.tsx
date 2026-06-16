@@ -102,7 +102,7 @@ export default function ImageModal({ isOpen, onClose, images, initialIndex = 0 }
                     onMouseLeave={handleMouseUp}
                     onDoubleClick={toggleZoom}
                 >
-                    <img
+                    <img loading="lazy"
                         src={images[currentIndex]}
                         alt={`Product view ${currentIndex + 1}`}
                         className={`max-w-full max-h-full object-contain transition-transform duration-300 ${zoom === 1 ? 'cursor-zoom-in' : 'cursor-move'}`}
@@ -144,7 +144,7 @@ export default function ImageModal({ isOpen, onClose, images, initialIndex = 0 }
                                 className={`w-12 h-12 rounded-md overflow-hidden border-2 transition-all flex-shrink-0 ${currentIndex === idx ? 'border-accent scale-110' : 'border-transparent opacity-60 hover:opacity-100'
                                     }`}
                             >
-                                <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                                <img loading="lazy" src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
                             </button>
                         ))}
                     </div>
@@ -157,3 +157,4 @@ export default function ImageModal({ isOpen, onClose, images, initialIndex = 0 }
 function maxZoomLevelCheck(zoom: number) {
     return zoom <= 1; // Only show nav arrows if not zoomed in, to avoid conflict
 }
+

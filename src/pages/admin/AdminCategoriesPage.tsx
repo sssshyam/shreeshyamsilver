@@ -91,7 +91,7 @@ export default function AdminCategoriesPage() {
                             <div key={category.id} className="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow">
                                 {category.image && (
                                     <div className="aspect-video overflow-hidden">
-                                        <img
+                                        <img loading="lazy"
                                             src={category.image}
                                             alt={category.name}
                                             className="w-full h-full object-cover"
@@ -141,3 +141,4 @@ export default function AdminCategoriesPage() {
         </AdminLayout>
     );
 }
+

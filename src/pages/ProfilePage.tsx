@@ -90,7 +90,7 @@ export default function ProfilePage() {
                         <div className="flex items-center space-x-4">
                             <div className="w-16 h-16 bg-silver-100 rounded-full flex items-center justify-center text-2xl font-serif text-silver-600 overflow-hidden border border-silver-200">
                                 {user.avatar_url ? (
-                                    <img
+                                    <img loading="lazy"
                                         src={user.avatar_url}
                                         alt={user.name || 'User'}
                                         className="w-full h-full object-cover"
@@ -252,3 +252,4 @@ export default function ProfilePage() {
         </div>
     );
 }
+

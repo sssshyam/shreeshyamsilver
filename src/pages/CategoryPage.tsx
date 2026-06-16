@@ -84,7 +84,7 @@ export default function CategoryPage() {
             <div className="relative bg-silver-900 py-24 sm:py-32 overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
-                    <img
+                    <img loading="lazy"
                         src={category.image_url || category.image || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1920&q=80'}
                         alt={category.name}
                         className="w-full h-full object-cover opacity-50"
@@ -146,3 +146,4 @@ export default function CategoryPage() {
         </div>
     );
 }
+

@@ -39,7 +39,7 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                         {/* Logo */}
                         <Link to="/" className="flex items-center">
-                            <img
+                            <img loading="lazy"
                                 src="https://i.ibb.co/yc86HQqc/shree-shyam-silver-logo-1.png"
                                 alt="Shree Shyam Silver"
                                 className="h-20 md:h-24 w-auto object-contain"
@@ -149,7 +149,7 @@ export default function Header() {
                                         className="flex items-center gap-2 text-silver-700 hover:text-accent transition-colors"
                                     >
                                         {user.avatar_url ? (
-                                            <img
+                                            <img loading="lazy"
                                                 src={user.avatar_url}
                                                 alt={user.name || 'User'}
                                                 className="w-8 h-8 rounded-full border border-silver-200 object-cover"
@@ -295,3 +295,4 @@ export default function Header() {
         </header >
     );
 }
+

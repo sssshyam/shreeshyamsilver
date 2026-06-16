@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { supabase } from '../../lib/supabase';
 import { Category } from '../../types';
-
+import { compressImageForWeb } from '../../utils/imageCompression';
 export default function AdminProductFormPage() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -176,13 +176,17 @@ export default function AdminProductFormPage() {
 
         try {
             for (const file of imageFiles) {
-                const fileExt = file.name.split('.').pop();
+                // Compress the image before upload (DEEP FIX FOR EGRESS)
+                const compressedFile = await compressImageForWeb(file);
+                
+                // Use the compressed file's extension (it will be .webp)
+                const fileExt = compressedFile.name.split('.').pop();
                 const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
                 const filePath = `products/${fileName}`;
 
                 const { error: uploadError } = await supabase.storage
                     .from('product-images')
-                    .upload(filePath, file);
+                    .upload(filePath, compressedFile);
 
                 if (uploadError) throw uploadError;
 
@@ -480,7 +484,7 @@ export default function AdminProductFormPage() {
                             {imagePreview && (
                                 <div>
                                     <p className="text-sm font-medium text-silver-700 mb-2">Preview:</p>
-                                    <img
+                                    <img loading="lazy"
                                         src={imagePreview}
                                         alt="Preview"
                                         className="w-48 h-48 object-cover rounded border-2 border-silver-200"
@@ -494,7 +498,7 @@ export default function AdminProductFormPage() {
                                     <div className="grid grid-cols-4 gap-4">
                                         {formData.gallery_images.map((url, index) => (
                                             <div key={index} className="relative group">
-                                                <img
+                                                <img loading="lazy"
                                                     src={url}
                                                     alt={`Product ${index + 1}`}
                                                     className={`w-full h-24 object-cover rounded border-2 transition-all ${formData.image_url === url ? 'border-accent' : 'border-silver-200'
@@ -927,3 +931,4 @@ export default function AdminProductFormPage() {
         </AdminLayout>
     );
 }
+

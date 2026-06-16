@@ -20,7 +20,7 @@ export default function AboutPage() {
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <img
+                                <img loading="lazy"
                                     src="https://i.ibb.co/Qvx3vBt5/Silver-Plated-peacock-deepak-candle-12.png"
                                     alt="Silver Plated Peacock Deepak"
                                     className="w-full h-auto rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-300 object-cover"
@@ -53,7 +53,7 @@ export default function AboutPage() {
                     {/* Silver Bowls */}
                     <div className="relative bg-[#6B7C8E] overflow-hidden group min-h-[400px]">
                         <div className="absolute inset-0 flex justify-end">
-                            <img
+                            <img loading="lazy"
                                 src="https://i.ibb.co/TDgxmzhw/IMG-8957.jpg"
                                 alt="Pooja Décor"
                                 className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
@@ -74,7 +74,7 @@ export default function AboutPage() {
                     {/* Silver Jars */}
                     <div className="relative bg-[#0B1C38] overflow-hidden group min-h-[400px]">
                         <div className="absolute inset-0 flex justify-end">
-                            <img
+                            <img loading="lazy"
                                 src="https://i.ibb.co/JwvY0X96/IMG-8961.jpg"
                                 alt="Home Décor"
                                 className="h-full w-2/3 object-cover object-center opacity-100 group-hover:scale-105 transition-transform duration-700"
@@ -217,3 +217,4 @@ export default function AboutPage() {
         </div>
     );
 }
+

@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
                             className="mb-4 border border-silver-200 rounded-sm overflow-hidden relative group bg-white h-[400px] md:h-[500px] flex items-center justify-center cursor-zoom-in"
                             onClick={() => setShowImageModal(true)}
                         >
-                            <img
+                            <img loading="lazy"
                                 src={productImages[selectedImage]}
                                 alt={product.name}
                                 className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
@@ -215,7 +215,7 @@ export default function ProductDetailPage() {
                                         className={`border-2 rounded-sm overflow-hidden transition-all bg-white relative ${selectedImage === index ? 'border-accent' : 'border-silver-200 hover:border-silver-300'
                                             }`}
                                     >
-                                        <img
+                                        <img loading="lazy"
                                             src={image}
                                             alt={`${product.name} ${index + 1}`}
                                             className="w-full aspect-square object-contain"
@@ -507,3 +507,4 @@ export default function ProductDetailPage() {
         </div>
     );
 }
+
