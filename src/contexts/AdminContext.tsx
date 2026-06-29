@@ -22,12 +22,23 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Check if admin is logged in (using localStorage)
-        const storedAdmin = localStorage.getItem('admin');
-        if (storedAdmin) {
-            setAdmin(JSON.parse(storedAdmin));
-        }
-        setIsLoading(false);
+        const checkAuth = async () => {
+            const storedAdmin = localStorage.getItem('admin');
+            
+            // Validate with Supabase to ensure the client actually has the authenticated token
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (storedAdmin && session) {
+                setAdmin(JSON.parse(storedAdmin));
+            } else if (storedAdmin && !session) {
+                // If local storage says logged in but Supabase has no session, clear it out
+                localStorage.removeItem('admin');
+                setAdmin(null);
+            }
+            setIsLoading(false);
+        };
+        
+        checkAuth();
     }, []);
 
     const login = async (email: string, password: string): Promise<boolean> => {
